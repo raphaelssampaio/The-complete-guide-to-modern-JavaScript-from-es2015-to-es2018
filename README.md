@@ -13,30 +13,39 @@
 
 # [The Complete Guide to Modern JavaScript ](https://www.amazon.com/dp/B07DGGFNS6)
 
-## Discover all the new features introduced to JavaScript from 2015 to 2018
+## Descubra todas as novas funcionalidades introduzidas ao JavaScript de 2015 a 2018
 
 ![book-cover](/assets/Cover.jpg)
 
-## Disclaimer
+## Aviso
 
-This book is intended for somebody already familiar with the basics of JavaScript, as I am only focusing on the new features introduced by ES6 and I won't be explaining what is a `var`, how to create a function, etc...
+Este livro é direcionado para pessoas que já são familiares ao básico do JavaScript, visto que eu só foco nas novas funcionalidades introduzidas pela ES6 e eu não vou explicar o que é `var`, como criar funções, etc...
 
-Additional chapters cover the new features introduced post ES6 (ES2015) all the way to the most recent version, ES2018.
+Capítulos adicionais cobrem as novas funcionalidades introduzidas pós-ES6 (ES2015) até a mais recente versão, ES2018.
 
-## Where to buy it
+&nbsp;
 
-You can purchase this ebook on amazon.com at this [link](https://www.amazon.com/dp/B07DGGFNS6) or click [here](http://bit.ly/2kGMwKn) if you are not in the US to find the right amazon store.
+## Onde comprar
 
-You can also read my articles on my blog [here](https://www.inspiredwebdev.com/).
+Você pode adquirir este livro na amazon.com neste [link](https://www.amazon.com/dp/B07DGGFNS6) ou clicar [aqui](http://bit.ly/2kGMwKn) se você não está nos Estados Unidos para encontrar a loja da amazon certa.
 
-The ebook contains 50+ extra quizzes for your to practice and test your knowledge after reading each chapter.
-You can have a look at the quizzes from the first two chapters in the `quizzes` folder.
+Você também pode ler meus artigos no meu blog [aqui](https://www.inspiredwebdev.com/).
 
-## About me
+O livro contém mais de 50 quizzes extra para você praticar e testar seu conhecimento depois de ler cada capítulo. Você pode olhar os quizzes dos dois primeiros capítulos na pasta `quizzes`.
+
+## Sobre mim
 
 My name is Alberto, I'm from Italy and I love programming. As I was studying ES6 I decided that the best way for me to test my understanding of it was to write articles about it. I have now packaged those articles in this ebook.
 
+Meu nome é Alberto, Eu sou da Itália e amo programar. Enquanto eu estava estudando a ES6 eu decidi que a melhor forma de testar meu conhecimento sobre ela era escrever artigos sobre. Agora eu tenho amontoados esses artigos neste ebook.
 
-## License
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License</a>.
+## Licença
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png" /></a><br />Este trabalho está licenciado sob <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License</a>.
+
+## Tradução para o Português
+
+**Tradução:** [Raphael Sampaio](https://www.linkedin.com/in/raphael-sampaio-41342757)
+
+**Revisão:** [Jorge Barata](https://www.linkedin.com/in/jorgebarata) e [Hugo Duarte](https://www.linkedin.com/in/hugo-duarte-3392bb153)
