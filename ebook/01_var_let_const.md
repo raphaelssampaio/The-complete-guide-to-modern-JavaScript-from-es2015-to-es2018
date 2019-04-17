@@ -1,4 +1,4 @@
-# Capítulo 1: Var vs Let vs Const & a zona morta temporal
+# Capítulo 1: Var vs Let vs Const e a zona morta temporal
 
 Com a introdução de `let` e `const` no **ES6**, nós podemos definir melhor das nossas variáveis dependendo do que nós queremos. Vamos ver as maiores diferenças entre elas.
 
