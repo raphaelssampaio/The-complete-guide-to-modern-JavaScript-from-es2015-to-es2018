@@ -35,8 +35,6 @@ O livro contém mais de 50 quizzes extra para você praticar e testar seu conhec
 
 ## Sobre mim
 
-My name is Alberto, I'm from Italy and I love programming. As I was studying ES6 I decided that the best way for me to test my understanding of it was to write articles about it. I have now packaged those articles in this ebook.
-
 Meu nome é Alberto, Eu sou da Itália e amo programar. Enquanto eu estava estudando a ES6 eu decidi que a melhor forma de testar meu conhecimento sobre ela era escrever artigos sobre. Agora eu tenho amontoados esses artigos neste ebook.
 
 
