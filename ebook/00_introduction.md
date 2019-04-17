@@ -1,6 +1,6 @@
 # Introdução
 
-Este livro é a soma de todos os meus estudos em JavaScript ao longo de alguns meses atrás.
+Este livro é a soma de todos os meus estudos em JavaScript ao longo de alguns meses.
 
 Como desenvolvedor web auto-didata eu venho lendo livros, assistindo tutoriais, e lendo artigos para me manter atualizado nas novas versões de JavaScript. Enquanto eu faço isso, eu anoto algumas coisas.
 
