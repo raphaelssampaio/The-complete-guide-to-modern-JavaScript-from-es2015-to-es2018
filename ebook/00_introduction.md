@@ -2,13 +2,13 @@
 
 Este livro é a soma de todos os meus estudos em JavaScript ao longo de alguns meses.
 
-Como desenvolvedor web auto-didata eu venho lendo livros, assistindo tutoriais, e lendo artigos para me manter atualizado nas novas versões de JavaScript. Enquanto eu faço isso, eu anoto algumas coisas.
+Como desenvolvedor web autodidata eu venho lendo livros, assistindo tutoriais, e lendo artigos para me manter atualizado nas novas versões de JavaScript. Enquanto eu faço isso, eu anoto algumas coisas.
 
 Agora eu tenho compilado todas essas notas em um livro conciso, cobrindo quase todas as novas funcionalidades que foram adicionadas na linguagem entre 2015 e 2018.
 
 Escrever este livro tem sido uma longa jornada, mas o resultado final me fez orgulhar de ter começado a escrevê-lo.
 
-Como desenvolvedor auto-didata eu sei a importância de compartilhar conhecimento e material, e é por isso que este livro pode ser lido online no meu [website](https://www.inspiredwebdev.com/courses/the-complete-guide-to-modern-javascript/) ou no [GitHub](https://github.com/AlbertoMontalesi/JavaScript-es6-and-beyond-ebook), onde mais de 170 pessoas já mostraram seu apreço por isso.
+Como desenvolvedor autodidata eu sei a importância de compartilhar conhecimento e material, e é por isso que este livro pode ser lido online no meu [website](https://www.inspiredwebdev.com/courses/the-complete-guide-to-modern-javascript/) ou no [GitHub](https://github.com/AlbertoMontalesi/JavaScript-es6-and-beyond-ebook), onde mais de 170 pessoas já mostraram seu apreço por isso.
 
 
 **Aviso**
