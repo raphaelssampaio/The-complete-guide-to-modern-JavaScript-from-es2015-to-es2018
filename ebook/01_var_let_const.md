@@ -1,90 +1,89 @@
-# Chapter 1: Var vs Let vs Const & the temporal dead zone
+# Capítulo 1: Var vs Let vs Const & a zona morta temporal
 
-With the introduction of `let` and `const` in **ES6**, we can now better define our variables depending on our needs. Let's have a look at the major differences between them.
+Com a introdução de `let` e `const` no **ES6**, nós podemos definir melhor das nossas variáveis dependendo do que nós queremos. Vamos ver as maiores diferenças entre elas.
 
 &nbsp;
 
 ## `Var`
 
-`var` are **function scoped**, which means that if we declare them inside a `for` loop (which is a **block** scope) they will be available even outside of it.
+`var` são **funções escopo**, que significa que se nós as declaramos dentro de um `for` (que é um escopo **fechado**) elas estarão disponíveis fora deste escopo.
 
 ``` javascript 
 for (var i = 0; i < 10; i++) {
-  var leak = "I am available outside of the loop";
+  var leak = "Eu estou disponível fora do loop";
 }
 
 console.log(leak);
-// I am available outside of the loop
+// Eu estou disponível fora do loop
 
 function myFunc(){
-  var functionScoped = "I am available inside this function";
+  var functionScoped = "Eu estou disponível dentro desta função";
   console.log(functionScoped);
 }
 myFunc();
-// I am available inside this function
+// Eu estou disponível dentro desta função
 console.log(functionScoped);
 // ReferenceError: functionScoped is not defined
 ```
 
-In the first example the value of the `var`  leaked out of the block-scope and could be accessed from outside of it, whereas in the second example `var` was confined inside a function-scope and we could not access it from outside.
+No primeiro exemplo o valor de `var` vazou para fora do escopo-fechado e pode ser acessada fora dele, enquanto no segundo  exemplo `var` foi confinada dentro de uma função-escopo e nós não podemos acessá-la fora dele.
 
 &nbsp;
 
 ## `Let`
 
-`let` (and `const`) are **block scoped**, meaning that they will be available only inside of the block where they are declared and its sub-blocks.
+`let` (e `const`) são **escopo fechado**, significando que elas estão disponíveis somente dentro de um bloco onde elas são declaradas e em seus sub-blocos.
 
 ``` javascript
-// using `let`
+// usando `let`
 let x = "global";
 
 if (x === "global") {
-  let x = "block-scoped";
+  let x = "escopo-fechado";
 
   console.log(x);
-  // expected output: block-scoped
+  // output esperado: escopo-fechado
 }
 
 console.log(x);
-// expected output: global
+// output esperado: global
 
-// using `var`
+// usando `var`
 var y = "global";
 
 if (y === "global") {
-  var  y= "block-scoped";
+  var y = "escopo-fechado";
 
   console.log(y);
-  // expected output: block-scoped
+  // output esperado: escopo-fechado
 }
 
 console.log(y);
-// expected output: block-scoped
+// output esperado: escopo-fechado
 ```
 
-As you can see, when we assigned a new value to our `let` inside our block-scope, it **did not** change its value in the global scope, whereas when did the same with our `var` it leaked outside of the block-scope and also changed it in the global scope.
+Como nós podemos ver, quand nós assinamos um novo valor ao nosso `let` dentro do nosso escopo-fechado, ele **não** muda seu valor no escopo global, enquanto quando nós fazemos a mesma coisa com nosso `var` ele vaza para fora do nosso escopo-fechado e também muda o valor no escopo global.
 
 &nbsp;
 
 ## `Const`
 
-Similarly to `let`, `const` are **block-scoped**, but they differ in the fact that their value **can't change through re-assignment or can't be re-declared**.
-
+Do mesmo modo de `let`, `const` são **escopo-fechado**, mas eles diferem no fato do valor deles **não mudarem através da reassinatura ou não poderem ser redeclarados**.
 
 ``` javascript
-const constant = 'I am a constant';
-constant = " I can't be reassigned";
+const constant = 'Eu sou uma constante';
+constant = " Eu não posso ser reassinada";
 
-// Uncaught TypeError: Assignment to constant variable
+// Uncaught TypeError: Atribuição a uma variável constante
 ```
 
 
-**Important** 
-This **does not** mean that **const are immutable**.
+**Importante** 
+Isso **não** significa que **const são imutáveis**.
 
 &nbsp;
 
-### The content of a `const` is an Object
+### O conteúdo de uma `const` é um Objeto
 
 ``` javascript
 const person = {
@@ -95,58 +94,60 @@ const person = {
 person.age = 26;
 console.log(person.age);
 // 26
-// in this case no error will be raised, we are not re-assigning the variable but just one of its properties.
+// nesse caso nenhum erro será mostrado, nós não estamos reassinando a variável mas somente uma de suas propriedades.
 ```
 
 ---
 
 &nbsp;
 
-## The temporal dead zone
+## A zona morta temporal
 
-According to **MDN**:
+De acordo com **MDN**:
 
-> In ECMAScript 2015, let bindings are not subject to **Variable Hoisting**, which means that let declarations do not move to the top of the current execution context. Referencing the variable in the block before the initialization results in a ReferenceError (contrary to a variable declared with var, which will just have the undefined value). The variable is in a “temporal dead zone” from the start of the block until the initialization is processed.
+> No ECMAScript 2015, as let não estão sujeitas a **Variável de Hoisting**, o que significa que as declarações let não se movem para o topo do contexto de execução atual. Fazer referência à variável no bloco antes da inicialização resulta em um ReferenceError (ao contrário de uma variável declarada com var, que terá apenas o valor indefinido). A variável está em uma “zona morta temporal” desde o início do bloco até que a inicialização seja processada.
 
 Let's look at an example:
 
 ```javascript
 console.log(i);
-var i = "I am a variable";
+var i = "Eu sou uma variável";
 
-//  expected output: undefined
+// output esperado: undefined
 
 console.log(j);
-let j = "I am a let";
+let j = "Eu sou um let";
 
-// expected output: ReferenceError: can't access lexical declaration `j' before initialization
+// output esperado: ReferenceError: não é possível acessar a declaração lexical `j' antes da inicialização
 ```
 
-`var` can be accessed **before** they are defined, but we can't access their **value**.
-`let` and `const` can't be accessed **before we define them**.
+`var` podem ser acessadas **antes** delas serem definidas, mas nós não conseguimos acessar o **valor** delas.
 
-This happens because `var` are subject to **hoisting**, which means that they are processed before any code is executed. Declaring a `var` anywhere is equivalent to **declaring it at the top**. This is why we can still access the `var` but we can't yet see its content, hence the `undefined` result.
+`let` e `const` não podem ser acessadas **antes de nós as definirmos**.
+
+Isso acontece porque `var` são objetos de **hoisting**, que significa que elas são processadas antes de qualquer código ser executado. Declarar uma `var` em qualquer lugar é equivalente a **declará-la no topo**. Este é o motivo de nós ainda assim conseguirmos acessar a `var` mas nós ainda não conseguimos ver seu conteúdo, por isso o resultado é `undefined`.
 
 
 ---
 &nbsp;
 
-## When to use `Var`, `Let` and `Const`
+## Quando usar `Var`, `Let` e `Const`
 
-There is no rule stating where to use each of them and people have different opinions. Here I am going to present to you two opinions from popular developers in the JavaScript community.
+Não há regra afirmando onde usar cada uma delas e as pessoas tem opiniões diferentes. Aqui eu vou apresentar a você duas opiniões de desenvolvedores conhecidos na comunidade JavaScript.
 
-The first opinion comes from [Mathias Bynes:](https://mathiasbynens.be/notes/es6-const)
-
-
-- use `const` by default
-- use `let` only if rebinding is needed.
-- `var` should never be used in ES6.
+A primeira opinião vem de [Mathias Bynes:](https://mathiasbynens.be/notes/es6-const)
 
 
-The second opinion comes from [Kyle Simpson:]( blog.getify.com/constantly-confusing-const/)
+- use `const` como padrão
+- use `let` somente se for necessário mudar o valor.
+- `var` nunca devem ser usadas no ES6.
 
-- Use `var` for top-level variables that are shared across many (especially larger) scopes.
-- Use `let` for localized variables in smaller scopes.
-- Refactor `let` to `const` only after some code has to be written, and you're reasonably sure that you've got a case where there shouldn't be variable reassignment.
+
+A segunda opinião vem de [Kyle Simpson:]( blog.getify.com/constantly-confusing-const/)
+
+- Use `var` para as variáveis top-level que são compartilhadas por muitos (e especialmente grandes) escopos.
+- Use `let` para variáveis locais em pequenos escopos.
+- Refatorar `let` para `const` somente antes de algum código que foi escrito, e você está razoavelmente certo que você tem um caso onde não será necessário fazer uma reassinatura.
 
 Which opinion to follow is entirely up to you. As always, do your own research and figure out which one you think is the best.
+A escolha de qual opinião seguir é sua. Como sempre, faça sua própria pesquisa e descubra qual você acha ser a melhor definição.
