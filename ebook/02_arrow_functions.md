@@ -1,37 +1,37 @@
 # Chapter 2: Arrow functions
 
-## What is an arrow function?
+## O que são Arrow Functions?
 
-ES6 introduced fat arrows (`=>`) as a way to declare functions.
-This is how we would normally declare a function in ES5:
+ES6 apresentou os fat-arrows (`=>`) como um jeito de declarar funções.
+Esse é o jeito que normalmente nós declaramos uma função no ES5:
 
 ``` javascript
 var greeting = function(name) {
-  return "hello " + name;
+  return "Olá " + name;
 }
 ```
 
-The new syntax with a fat arrow looks like this:
+A nova sintase com um fat-arrow é assim:
 
 ``` javascript
 const greeting = (name) => {
-  return `hello ${name}`;
+  return `Olá ${name}`;
 }
 ```
 
-We can go further, if we only have one parameter we can drop the parenthesis and write:
+Nós podemos ir além, se nós só temos um parâmetro nós podemos tirar o parêntesis e escrever:
 
 ``` javascript
 const greeting = name => {
-  return `hello ${name}`;
+  return `Olá ${name}`;
 }
 ```
 
-If we have no parameter at all we need to write empty parenthesis like this:
+Se nós não temos parâmetros nós precisamos escrever os parêntesis vazios assim:
 
 ``` javascript
 const greeting = () => {
-  return "hello";
+  return "Olá";
 }
 ```
 
