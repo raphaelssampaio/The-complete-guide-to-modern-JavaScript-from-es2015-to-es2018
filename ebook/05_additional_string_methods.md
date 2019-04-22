@@ -1,8 +1,8 @@
-# Chapter 5: Additional string methods
+# Capítulo 5: Outros métodos de string
 
-## Additional string methods
+## Outros métodos de string
 
-We are going to cover 4 new strings method:
+Nós iremos abranger 4 novos métodos de string:
 
 - `startsWith()`
 - `endsWith()`
@@ -13,7 +13,7 @@ We are going to cover 4 new strings method:
 
 ### `startsWith()`
 
-This new method will check if the string starts with the value we pass in:
+Este novo método irá checar se a string começa com o valor que nós passamos:
 
 ```js
 const code = "ABCDEFG";
@@ -21,26 +21,26 @@ const code = "ABCDEFG";
 code.startsWith("ABB");
 // false
 code.startsWith("abc");
-// false, startsWith is case sensitive
+// false, startsWith é case sensitive
 code.startsWith("ABC");
 // true
 ```
 
-We can pass an additional parameter, which is the starting point where the method will begin checking.
+Nós passamos um parâmetro adicional, que é o ponto de partida onde o método começará a checar.
 
 
 ``` js
 const code = "ABCDEFGHI"
 
 code.startsWith("DEF",3);
-// true, it will begin checking after 3 characters
+// true, ele começará a checar depois de 3 caractéres
 ```
 
 &nbsp;
 
 ### `endsWith()`
 
-Similarly to `startsWith()` this new method will check if the string ends with the value we pass in:
+Do mesmo modo de `startsWith()` este novo método checará se a string termina com o valor que nós passamos:
 
 ```js
 const code = "ABCDEF";
@@ -48,26 +48,26 @@ const code = "ABCDEF";
 code.endsWith("DDD");
 // false
 code.endsWith("def");
-// false, endsWith is case sensitive
+// false, endsWith é case sensitive
 code.endsWith("DEF");
 // true
 
 ```
 
-We can pass an additional parameter, which is the number of digits we want to consider when checking the ending.
+Nós passamos um parâmetro adicional, que é on número de dígitos que nós queremos considerar quando checar o final.
 
 ``` js
 const code = "ABCDEFGHI"
 
 code.endsWith("EF", 6);
-// true, 6 means that we consider only the first 6 values ABCDEF, and yes this string ends with EF therefore we get *true*
+// true, 6 significa que nós consideramos apenas os 6 primeiros valores ABCDEF, e sim, esta string termina com EF, portanto nós temos *true*
 ```
 
 &nbsp;
 
 ### `includes()`
 
-This method will check if our string includes the value we pass in.
+Este método checará se nossa string inclui o valor que nós passamos.
 
 ```js
 const code = "ABCDEF"
@@ -75,7 +75,7 @@ const code = "ABCDEF"
 code.includes("ABB");
 // false
 code.includes("abc");
-// false, includes is case sensitive
+// false, includes é case sensitive
 code.includes("CDE");
 // true
 ```
@@ -84,10 +84,10 @@ code.includes("CDE");
 
 ### `repeat()`
 
-As the name suggests, this new method will repeat what we pass in.
+O nome é sugestivo, este novo método repetirá o que nós passamos.
 
 ``` js
-let hello = "Hi";
-console.log(hello.repeat(10));
-// "HiHiHiHiHiHiHiHiHiHi"
+let ola = "Oi";
+console.log(ola.repeat(10));
+// "OiOiOiOiOiOiOiOiOiOi"
 ```
