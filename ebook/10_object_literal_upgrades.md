@@ -1,115 +1,115 @@
-# Chapter 10: Object literal upgrades
+# Capítulo 10: Upgrades no Objeto literal
 
-In this article we will look at the many upgrades brought by ES6 to the Object literal notation.
-
-&nbsp;
-
-## Deconstructing variables into keys and values
-
-This is our initial situation:
-
-``` js
-const name = "Alberto";
-const surname = "Montalesi";
-const age = 25;
-const nationality = "Italian";
-```
-
-Now if we wanted to create an object literal this is what we would usually do:
-
-```js
-const person = {
-  name: name,
-  surname: surname,
-  age: age,
-  nationality: nationality,
-}
-```
-
-In ES6 we can simplify like this:
-
-```js
-const person = {
-  name,
-  surname,
-  age,
-  nationality,
-}
-console.log(person);
-// {name: "Alberto", surname: "Montalesi", age: 25, nationality: "Italian"}
-```
-
-As our `const` is named the same way as the properties we are using we can reduce our typing by a lot.
+Neste artigo nós veremos os vários upgrades trazidos pelo ES6 para a notação do Objeto literal.
 
 &nbsp;
 
-## Add functions to our Objects
+## Desconstruindo variáveis em chaves e valores
 
-Let's looks at an example from ES5:
+Esta é a nossa situação inicial:
 
 ``` js
-const person = {
-  name: "Alberto",
-  greet: function(){
-    console.log("Hello");
+const nome = "Alberto";
+const sobrenome = "Montalesi";
+const idade = 25;
+const nacionalidade = "Italiano";
+```
+
+Agora se nós quisermos criar um objeto literal é assim que nós normalmente faríamos:
+
+```js
+const pessoa = {
+  nome: nome,
+  sobrenome: sobrenome,
+  idade: idade,
+  nacionalidade: nacionalidade,
+}
+```
+
+No ES6 nós podemos simplesmente fazer assim:
+
+```js
+const pessoa = {
+  nome,
+  sobrenome,
+  idade,
+  nacionalidade,
+}
+console.log(pessoa);
+// {nome: "Alberto", sobrenome: "Montalesi", idade: 25, nacionalidade: "Italiano"}
+```
+
+Como nossa `const` tem o mesmo nome da propriedade que estamos usando, nós podemos reduzir bastante a nossa escrita.
+
+&nbsp;
+
+## Adicionar funções para nossos Objetos
+
+Vamos ver um exemplo do ES5:
+
+``` js
+const pessoa = {
+  nome: "Alberto",
+  saude: function(){
+    console.log("Olá");
   },
 }
 ```
 
-If we wanted to add a function to our Object we had to use the the `function` keyword. In ES6 it got easier, look here:
+Se nós quisermos adicionar uma função ao nosso Objeto nós teríamos que usar a palavra-chave `function`. No ES6 facilitaram para nós, veja:
 
 ``` js
-const person = {
-  name: "Alberto",
-  greet(){
-    console.log("Hello");
+const pessoa = {
+  nome: "Alberto",
+  saude(){
+    console.log("Olá");
   },
 }
 
-person.greet();
-// Hello;
+pessoa.saude();
+// Olá;
 ```
 
-No more `function`, it's shorter and it does the same.
+Sem `function`, é mais curto e faz a mesma coisa.
 
-**Remember** that **arrow functions** are anonymous, look at this example:
+**Lembre-se** que **arrow functions** são anônimas, veja este exemplo:
 
 ``` js
-// arrow functions are anonymous, in this case you need to have a key
-const person1 = {
-  () => console.log("Hello"),
+// arrow functions são anônimas, neste caso você precisa ter a chave
+const pessoa1 = {
+  () => console.log("Olá"),
 };
 
-const person2 = {
-  greet: () => console.log("Hello"),
+const pessoa2 = {
+  saude: () => console.log("Olá"),
 }
 ```
 
 &nbsp;
 
-## Dynamically define properties of an Object
+## Definir dinamicamente as propriedades de um Objeto
 
-This is how we would dynamically define properties of an Object in ES5:
+O que se segue é como nós difiniríamos dinamicamente as propriedades de um Objeto no ES5:
 
 ``` js
-var name = "name";
-// create empty object
-var person = {}
-// update the object
-person[name] = "Alberto";
-console.log(person.name);
+var nome = "nome";
+// criar um objeto vazio
+var pessoa = {}
+// atualizar o objeto
+pessoa[nome] = "Alberto";
+console.log(pessoa.nome);
 // Alberto
 ```
 
-First we created the Object and then we modified it.
+Primeiro nós criamos o Objeto e então nós o modificamos.
 
-In ES6 we can do both things at the same time, look here:
+No ES6 nós podemos fazer as duas coisas ao mesmo tempo, veja:
 
 ``` js
-const name = "name";
-const person = {
-  [name]:"Alberto",
+const nome = "nome";
+const pessoa = {
+  [nome]:"Alberto",
 };
-console.log(person.name);
+console.log(pessoa.nome);
 // Alberto
 ```
