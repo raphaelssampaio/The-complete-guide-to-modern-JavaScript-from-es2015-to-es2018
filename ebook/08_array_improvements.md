@@ -4,7 +4,7 @@
 
 `Array.from()` é o primeiro de muitos novos métodos que foram apresentados no ES6.
 
-Ele vai tornar algo **arrayzável**, isso significa que algo que se parece com um array, mas não é, ele vai transformar em um array real.
+Ele vai tornar algo **arrayzável**, isso significa que se algo parece com um array, mas não é, ele vai transformar em um array real.
 
 ``` js
 // nosso html
