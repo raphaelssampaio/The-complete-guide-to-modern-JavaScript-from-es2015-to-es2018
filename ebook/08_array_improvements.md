@@ -1,70 +1,69 @@
-# Chapter 8: Array improvements
+# Chapter 8: Melhorias no Array
 
 ## `Array.from()`
 
-`Array.from()` is the first of the many new array methods that ES6 introduced.
+`Array.from()` é o primeiro de muitos novos métodos que foram apresentados no ES6.
 
-It will take something **arrayish**, meaning something that looks like an array but it isn't, and transform it into a real array.
+Ele vai tornar algo **arrayzável**, isso significa que algo que se parece com um array, mas não é, ele vai transformar em um array real.
 
 ``` js
-// our html
+// nosso html
 <div class="fruits">
-  <p> Apple </p>
+  <p> Maçã </p>
   <p> Banana </p>
-  <p> Orange </p>
+  <p> Laranja </p>
 </div>
 
-const fruits = document.querySelectorAll(".fruits p");
-const fruitArray = Array.from(fruits);
+const frutas = document.querySelectorAll(".frutas p");
+const frutaArray = Array.from(frutas);
 
-console.log(fruits);
-//it will return us an array containing 3 p tags [p,p,p];
+console.log(frutas);
+//vai nos retornar um array contendo 3 tags p [p,p,p];
 
-//since now we are dealing with an array we can use map
-const fruitNames = fruitArray.map( fruit => fruit.textContent);
+//tendo em vista que agora nós estamos lidando com um array nós podemos usar o map
+const nomeFrutas = frutaArray.map(fruta => fruta.textContent);
 
-console.log(fruitNames);
-// ["Apple", "Banana", "Orange"]
+console.log(nomeFrutas);
+// ["Maçã", "Banana", "Laranja"]
 ```
 
-We can also simplify like this:
+Nós podemos simplificar também:
 
 ```js
-const fruits = Array.from(document.querySelectorAll(".fruits p"));
-const fruitNames = fruits.map(fruit => fruit.textContent);
+const frutas = Array.from(document.querySelectorAll(".frutas p"));
+const nomeFrutas = frutas.map(fruta => fruta.textContent);
 
-console.log(fruitNames);
-// ["Apple", "Banana", "Orange"]
+console.log(nomeFrutas);
+// ["Maçã", "Banana", "Laranja"]
 ```
 
-Now we transformed **fruits** into a real array, meaning that we can use any sort of method such as `map` on it.
+Agora nós transformamos **frutas** em um array real, o que significa que nós podemos usar todo tipo de método tal como `map` nela.
 
-`Array.from()` also takes a second argument, a `map` function so we can write:
+`Array.from()` também tem um segundo argumento, uma função `map`. Então nós podemos escrever:
 
 ``` js
-const fruits = document.querySelectorAll(".fruits p");
-const fruitArray = Array.from(fruits, fruit => {
-  console.log(fruit);
-  // <p> Apple </p>
+const frutas = document.querySelectorAll(".frutas p");
+const frutaArray = Array.from(frutas, fruta => {
+  console.log(fruta);
+  // <p> Maçã </p>
   // <p> Banana </p>
-  // <p> Orange </p>
-  return fruit.textContent;
-  // we only want to grab the content not the whole tag
+  // <p> Laranja </p>
+  return fruta.textContent;
+  // nós somente queremos obter o conteúdo, não toda a tag
 });
-console.log(fruitArray);
-// ["Apple", "Banana", "Orange"]
+console.log(frutaArray);
+// ["Maçã", "Banana", "Laranja"]
 ```
 
 &nbsp;
 
 ## `Array.of()`
 
-`Array.of()` will create an array with all the arguments we pass into it.
-
+`Array.of()` vai criar um array com todos os argumentos que nós passamos a ele.
 
 ```js
-const digits = Array.of(1,2,3,4,5);
-console.log(digits);
+const digitos = Array.of(1,2,3,4,5);
+console.log(digitos);
 
 // Array [ 1, 2, 3, 4, 5];
 ```
@@ -73,44 +72,43 @@ console.log(digits);
 
 ## `Array.find()`
 
-`Array.find()` returns the value of the first element in the array that satisfies the provided testing function. Otherwise `undefined` is returned.
+`Array.find()` retorna o valor do primeiro elemento no array que satisfaz a função de teste fornecida. Caso contrário `undefined` é retornado.
 
-It can be useful in instances where we have a json file, maybe coming from an API from instagram or something similar and we want to grab a specific post with a specific code that identifies it.
+Ele pode ser útil em intâncias onde nós temos um arquivo json, talvez vindo de uma API do instagram ou algo parecido e nós queremos obter um post específico com um código específico que o identifica.
 
-Let's looks at a simple example to see how `Array.find()` works.
+Vamos ver um exemplo simples para notar como `Array.find()` trabalha.
 
 ``` js
 const array = [1,2,3,4,5];
 
-let found = array.find( e => e > 3 );
-console.log(found);
+let encontrado = array.find( e => e > 3 );
+console.log(encontrado);
 // 4
 ```
 
-As we mentioned, it will return the **first element** that matches our condition, that's why we only got **4** and not **5**.
+Como mencionamos, ele vai retornar o **primeiro elemento** que se encaixa em nossa condição, esse é o motivo de nós termos obtido **4** e não **5**.
 
 &nbsp;
 
 ## `Array.findIndex()`
 
-`Array.findIndex()` will return the *index* of the element that matches our condition.
+`Array.findIndex()` vai retornar o *index* do elemento que se encaixa em nossa condição.
 
 ``` js
-const greetings = ["hello","hi","byebye","goodbye","hi"];
+const saudacoes = ["ola","oi","tchau tchau","adeus","oi"];
 
-let foundIndex = greetings.findIndex(e => e === "hi");
-console.log(foundIndex);
+let indexEncontrado = greetings.findIndex(e => e === "oi");
+console.log(indexEncontrado);
 // 1
 ```
 
-Again, only the index of the **first element** that matches our condition is returned.
+Mais uma vez, somente o index do **primeiro elemento** que se encaixa na nossa condição é retornado.
 
 &nbsp;
 
 ## `Array.some()` & `Array.every()`
 
-I'm grouping these two together because their use is self-explanatory: `.some()` will search if there are some items matching the condition and
-stop once it finds the first one, `.every()` will check that all items match the given condition.
+Estou agrupando esses dois juntos porque seus usos são auto-explitivos: `.some()` vai procurar se existe algum item que se encaixa na nossa condição e vai parar quando encontrar o primeiro, `.every()` vai checar todos os itens que se encaixam na condição informada.
 
 ```js
 const array = [1,2,3,4,5,6,1,2,3,1];
@@ -124,4 +122,4 @@ console.log(arrayEvery);
 // false
 ```
 
-Simply put, the first condition is true, because there are **some** elements greater than 2, but the second is false because **not every element** is greater than 2.
+Simplificando, a primeira condição é verdadeira, porque existe **algum** elemento maior do que 2, mas na segunda é falsa porque **nem todos os elementos** são maiores que 2.
