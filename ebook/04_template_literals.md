@@ -115,7 +115,7 @@ Do mesmo modo do exemplo acima, se nós quisermos, nós podemos passar a funçã
 
 ``` js
 const alimentos = {
-  refeicao: "costela de porco",
+  carne: "costela de porco",
   vegetais: "salada",
   fruta: "maçã",
   outros: ['cogumelos', 'macarrão instântaneo', 'sopa instantânea'],
