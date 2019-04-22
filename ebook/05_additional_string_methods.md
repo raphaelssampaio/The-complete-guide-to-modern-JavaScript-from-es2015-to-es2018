@@ -2,7 +2,7 @@
 
 ## Outros métodos de string
 
-Nós iremos falar de 4 novos métodos de string:
+Nós iremos falar sobre 4 novos métodos de string:
 
 - `startsWith()`
 - `endsWith()`
