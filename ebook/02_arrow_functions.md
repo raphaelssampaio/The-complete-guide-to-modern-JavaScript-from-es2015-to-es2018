@@ -37,42 +37,42 @@ const greeting = () => {
 
 &nbsp;
 
-## Implicitly return
+## Retorno implícito
 
-With arrow functions we can skip the explicit return and return like this:
-
-``` javascript
-const greeting = name => `hello ${name}`;
-```
-
-Let's say we want to implicitly return an **object literal**, we would do like this:
+Com as arrow functions nós podemos ignorar os retornos explícitos e retornar algo assim:
 
 ``` javascript
-const race = "100m dash";
-const runners = [ "Usain Bolt", "Justin Gatlin", "Asafa Powell" ];
-
-const winner = runners.map((runner, i) =>  ({ name: runner, race, place: i + 1}));
-
-console.log(winner);
-// {name: "Usain Bolt", race: "100m dash", place: 1}
-// {name: "Justin Gatlin", race: "100m dash", place: 2}
-// {name: "Asafa Powell", race: "100m dash", place: 3}
+const greeting = name => `Olá ${name}`;
 ```
 
-To tell JavaScript that what's inside the curly braces is an **object literal** that we want to implicitly return, we need to wrap everything inside parenthesis.
+Vamos dizer que nós queremos o retorno implícito de um **objeto literal**, nós faríamos algo assim:
 
-Writing `race` or `race: race` is the same.
+``` javascript
+const corrida = "100m rasos";
+const corredores = [ "Usain Bolt", "Justin Gatlin", "Asafa Powell" ];
+
+const vencedor = corredores.map((corredor, i) =>  ({ name: corredor, corrida, colocacao: i + 1}));
+
+console.log(vencedor);
+// {name: "Usain Bolt", corrida: "100m rasos", colocacao: 1}
+// {name: "Justin Gatlin", race: "100m rasos", colocacao: 2}
+// {name: "Asafa Powell", race: "100m rasos", colocacao: 3}
+```
+
+Para dizer ao JavaScript que o que está dentro dos colchetes é um **objeto literal** que nós queremos retornar implicitamente, nós precisamos colocar tudo dentro de parêntesis.
+
+Escrever `corrida` ou `corrida:corrida` é a mesma coisa.
 
 &nbsp;
 
-## Arrow functions are anonymous
+## Arrow functions são anônimas
 
-As you can see from the previous examples, arrow functions are **anonymous**.
+Como você pode ver nos exemplos anteriores, arrow functions são **anônimas**.
 
-If we want to have a name to reference them we can bind them to a variable:
+Se nós queremos ter um nome para referenciá-los nós podemos vinculá-los a uma variável:
 
 ``` javascript
-const greeting = name => `hello ${name}`;
+const greeting = name => `Olá ${name}`;
 
 greeting("Tom");
 ```
@@ -80,65 +80,65 @@ greeting("Tom");
 
 &nbsp;
 
-## Arrow function and the `this` keyword
+## Arrow functions e a palavra-chave `this`
 
-You need to be careful when using arrow functions in conjunction with the `this` keyword, as they behave differently from normal functions.
+Nós precisamos ser cuidadosos quando estamos usando arrow functions em conjunto com a palavra-chave `this`, porque eles têm comportamento diferente das funções normais.
 
-When you use an arrow function, the `this` keyword is inherited from the parent scope.
+Quando você usa um arrow function, a palavra-chave `this` é herdado do escopo pai.
 
-This can be useful in cases like this one:
+Isso pode ser útil em casos como este que se segue:
 
 ``` javascript 
-// grab our div with class box
+// prenda nossa div com um class box
 const box = document.querySelector(".box");
-// listen for a click event 
+// ouça um evento de click
 box.addEventListener("click", function() {
-  // toggle the class opening on the div
+  // altere a classe oppening na div
   this.classList.toggle("opening");
   setTimeout(function(){
-    // try to toggle again the class
+    // tente alterar a classe novamente
     this.classList.toggle("open");
     });
 });
 ```
 
 
-The problem in this case is that the first `this` is bound to the `const` box but the second one, inside the `setTimeout`, will be set to the `Window` object, trowing this error:
+O problema nesse caso é que o primeiro `this` está vinculado a `const` mas no segundo caso, dentro do `setTimeout`, será setado ao objeto `Window`, lançando este erro:
 
 ``` javascript
 Uncaught TypeError: cannot read property "toggle" of undefined 
 ```
 
-Since we know that **arrow functions** inherit the value of `this` from the parent scope, we can re-write our function like this:
+Desde que nós sabemos que as **arrow functions** herdam o valor de `this`do escopo pai, nós podemos reescrever nossas funções dessa forma:
 
 ``` javascript
-// grab our div with class box
+// prenda nossa div com um class box
 const box = document.querySelector(".box");
-// listen for a click event
+// ouça um evento de click
 box.addEventListener("click", function () {
-  // toggle the class opening on the div
+  // altere a classe oppening na div
   this.classList.toggle("opening");
   setTimeout(() => {
-    // try to toggle again the class
+    // tente alterar a classe novamente
     this.classList.toggle("open");
    });
 });
 ```
 
-Here, the second `this` will inherit from its parent, and will be set to the `const` box.
+Aqui, o segundo `this` será herdado do seu pai, e será setado a uma `const`.
 
 &nbsp;
 
-## When you should avoid arrow functions
+## Quando você deve evitar arrow functions
 
-Using what we know about the inheritance of the `this` keyword we can define some instances where you should **not** use arrow functions.
+Usando o que nós conhecemos sobre a herança da palavra-chave `this` nós podemos definir algumas instâncias onde você **não** deve usar arrow functions.
 
-The next 2 examples all show when to be careful using `this` inside of arrows.
+Os próximos 2 exemplos todos mostram quando ser criterioso usando `this` dentro das arrows.
 
 ``` javascript
 const button = document.querySelector("btn");
 button.addEventListener("click", () => {
-  // error: *this* refers to the `Window` Object
+  // error: *this* se refere ao Objeto `Window`
   this.classList.toggle("on");
 })
 ```
@@ -147,13 +147,13 @@ button.addEventListener("click", () => {
 const person = {
   age: 10,
   grow: () => {
-    // error: *this* refers to the `Window` Object
+    // error: *this* se refere ao Objeto `Window`
     this.age++;
   }
 }
 ```
 
-One other difference between Arrow functions and normal functions is access to the `arguments`. 
+Uma outra diferença entre Arrow functions e funções normais é o acesso aos `arguments`.
 
 ```javascript
 const orderRunners = () => {
@@ -164,13 +164,13 @@ const orderRunners = () => {
 }
 ```
 
-This code will return:
+Este código retornará:
 
 ``` javascript
 ReferenceError: arguments is not defined
 ```
 
-To access all the arguments of an array, use old function notation, or the splat syntax. The name of the parameter does not matter (here it is called args to reduce confusion with `arguments`). 
+Para acessar todos os argumentos de um array, use a notação antiga das funções, ou a sintaxe splat. O nome do parâmetro não importa (aqui ele é chamado de args para reduzir a confusão com `arguments`).
 
 ```javascript
 const orderRunners = (...args) => {
