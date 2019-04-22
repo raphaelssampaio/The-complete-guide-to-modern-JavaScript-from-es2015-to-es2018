@@ -1,80 +1,81 @@
-# Chapter 4: Template literals
+# Capítulo 4: Template literal
 
-Prior to ES6 they were called *template strings*, now we call them  *template literals*. Let's have a look at what changed in the way we interpolate strings in ES6.
+Antes do ES6 eles eram chamados de *template strings*, agora nós os chamamos de *template literal*. Vamos ter que ver o que mudou na maneira de interpolar strings no ES6.
 
 &nbsp;
 
-## Interpolating strings
+## Interpolando strings
 
-In ES5 we used to write this, in order to interpolate strings:
+No ES5 nós costumávamos escrever isso, a fim de interpolar strings:
 
 ``` javascript
 var name = "Alberto";
-var greeting = 'Hello my name is ' + name;
+var greeting = 'Olá meu nome é ' + name;
 
 console.log(greeting);
-// Hello my name is Alberto
+// Olá meu nome é Alberto
 ```
 
-In ES6 we can use backticks to make our life easier.
+No ES6 nós podemos usar o símbolo da crase para tornar nossa vida mais fácil.
 
 ``` javascript
 let name  = "Alberto";
-const greeting = `Hello my name is ${name}`;
+const greeting = `Olá meu nome é ${name}`;
 
 console.log(greeting);
-// Hello my name is Alberto
+// Olá meu nome é Alberto
 ```
 
 &nbsp;
 
-## Expression interpolations
+## Interpolação de expressões
 
-In ES5 we used to write this:
+No ES5 nós costumávamos escrever assim:
 
 ``` javascript
 var a = 1;
 var b = 10;
 console.log('1 * 10 is ' + ( a * b));
-// 1 * 10 is 10
+// 1 * 10 é 10
 
 ```
 
-In ES6 we can use backticks to reduce our typing:
+No ES6 nós podemos usar o símbolo da crase para reduzir nossa digitação:
 
 ``` javascript
 var a = 1;
 var b = 10;
-console.log(`1 * 10 is ${a * b}`);
-// 1 * 10 is 10
+console.log(`1 * 10 é ${a * b}`);
+// 1 * 10 é 10
 ```
 
 &nbsp;
 
-## Create HTML fragments
+## Criar fragmentos HTML
 
-In ES5 we used to do this to write multi-line strings:
+No ES5 nós costumávamos escrever strings multi-linhas:
+
 
 ``` javascript
-// We have to include a backslash on each line
-var text = "hello, \
-my name is Alberto \
-how are you?\ "
+// Nós temos que incluir uma barra invertida em cada linha
+var text = "Olá, \
+meu nome é Alberto \
+como vai você?\ "
 ```
 
-In ES6 we simply have to wrap everything inside backticks, no more backslashes on each line.
+No ES6 nós simplesmente temos que envolver tudo dentro de colchetes, sem mais barras invertidas em cada linha
 
 ``` javascript 
-const content = `hello,
-my name is Alberto
-how are you?`;
+const content = `Olá,
+meu nome é Alberto
+como vai você?`;
 ```
 
 &nbsp;
 
-## Nesting templates
+## Aninhamento de templates
 
-It's very easy to nest a template inside another one, like this:
+É muito fácil aninhar um template dentro de outro, dessa forma:
 
 ``` js
 const markup = `
@@ -86,21 +87,21 @@ const markup = `
 
 &nbsp;
 
-## Add a ternary operator
+## Adicionar um operador ternário
 
-We can easily add some logic inside our template string by using a ternary operator:
+Nós podemos facilmente adicionar alguma lógica dentro do nosso template de string usando um operador ternário:
 
 ``` js
-// create an artist with name and age
+// criando um artista com nome e idade
 const artist = {
   name: "Bon Jovi",
   age: 56,
 };
 
-// only if the artist object has a song property we then add it to our paragraph, otherwise we return nothing
+// somente se o objeto artista tiver uma propriedade song então nós adicionamos no nosso parágrafo, caso contrário não retormanos nada
 const text = `
   <div>
-    <p>  ${artist.name} is ${artist.age} years old ${artist.song ? `and wrote the song ${artist.song}` : '' }
+    <p>  ${artist.name} tem ${artist.age} de idade ${artist.song ? `e escreveu a música ${artist.song}` : '' }
     </p>
   </div>
 `
@@ -108,69 +109,67 @@ const text = `
 
 &nbsp;
 
-## Pass a function inside a template literal
+## Passando uma função dentro de um template literal
 
-Similarly to the example above, if we want to, we can pass a function inside a template literal.
+Do mesmo modo do exemplo acima, se nós quisermos, nós podemos passar a função dentro de um template literal.
 
 ``` js
-const groceries = {
-  meat: "pork chop",
-  veggie: "salad",
-  fruit: "apple",
-  others: ['mushrooms', 'instant noodles', 'instant soup'],
+const alimentos = {
+  refeicao: "costela de porco",
+  vegetais: "salada",
+  fruta: "maçã",
+  outros: ['cogumelos', 'macarrão instântaneo', 'sopa instantânea'],
 }
 
-// this function will map each individual value of our groceries
-function groceryList(others) {
+// essa função mapeará cada valor individual dos nossos alimentos
+function alimentosLista(outros) {
   return `
     <p> 
-      ${others.map( other => ` <span> ${other}</span>`).join(' ')}
+      ${outros.map( outro => ` <span> ${outro}</span>`).join(' ')}
     </p>
   `;
 }
 
-// display all our groceries in a p tag, the last one will include all the one from the array **others**
+// mostrar todos os nossos alimentos em uma tag p, o último incluirá todos eles do array **outros**
 const markup = `
   <div>
-    <p> ${groceries.meat} </p>
-    <p> ${groceries.veggie} </p>
-    <p> ${groceries.fruit} </p>
-    <p>${groceryList(groceries.others)} </p>
+    <p> ${alimentos.refeicao} </p>
+    <p> ${alimentos.vegetais} </p>
+    <p> ${alimentos.fruta} </p>
+    <p>${alimentosLista(alimentos.outros)} </p>
   <div>
 `
 ```
 
 &nbsp;
 
-## Tagged template literals
+## Template literais marcados
 
-By tagging a function to a template literal we can run the template literal through the function, providing it with everything that's inside of the template.
+Marcando uma função para um template literal nós podemos rodar o template literal por entre a função, fornecendo-a tudo que está dentro do template.
 
-The way it works is very simple: you just take the name of your function and put it in front of the template that you want to run it against.
-
+A maneira de como isso funciona é muito simples: você só pega o nome da sua função e coloca na frente de um template que você quer que rode contra.
 
  ```js
-let person = "Alberto";
-let age = 25;
+let pessoa = "Alberto";
+let idade = 25;
 
-function myTag(strings,personName,personAge){
+function minhaTag(strings,pessoaNome,pessoaIdade){
   let str = strings[1];
-  let ageStr;
+  let idadeStr;
 
-  personAge > 50 ? ageStr = "grandpa" : ageStr = "youngster";
+  pessoaIdade > 50 ? idadeStr = "vovô" : ageStr = "jovem";
 
-  return personName + str + ageStr;
+  return pessoaNome + str + idadeStr;
 }
 
-let sentence = myTag`${person} is a ${age}`;
-console.log(sentence);
-// Alberto is a youngster
+let sentenca = minhaTag`${pessoa} é um ${idade}`;
+console.log(sentenca);
+// Alberto é um jovem
 ```
 
-We captured the value of the variable age and used a ternary operator to decide what to print.
-`strings` will take all the strings of our `let` sentence whilst the other parameters will hold the variables.
+Nós capturamos o valor da variável idade e usamos um operador ternário para decidir o que printar.
+`strings` tomará todas as strings da nossa sentença `let` enquanto os outros parâmetros manterão as variáveis.
 
 &nbsp;
 
-To learn more about use cases of *template literals* check out [this article](https://codeburst.io/javascript-es6-tagged-template-literals-a45c26e54761).
-
+Para aprender mais sobre os casos de uso dos *template literais* veja [este artigo](https://codeburst.io/javascript-es6-tagged-template-literals-a45c26e54761).
