@@ -56,7 +56,7 @@ Nós não limitamos o nome da nossa variável ao mesmo nome das propriedades do 
 
 
 ```js
-const { facebook:fb } = ppessoa.links.social;
+const { facebook:fb } = pessoa.links.social;
 // nós renomeamos a variável para *fb* 
 ```
 
