@@ -1,38 +1,38 @@
-# Chapter 3: Default function arguments
+# Capítulo 3: Argumentos de função padrão
 
-## Default function arguments
+## Argumentos de função padrão
 
-ES6 makes it very easy to set default function arguments. Let's look at an example:
+ES6 tornou muito fácil setar argumentos de função padrão. Vamos ver em um exemplo:
 
 ``` javascript
-function calculatePrice(total, tax = 0.1, tip = 0.05){
-// When no value is given for tax or tip, the default 0.1 and 0.05 will be used 
-return total + (total * tax) + (total * tip);,
+function calcularPreco(total, taxa = 0.1, gorjeta = 0.05){
+// Quando nenhum valor é dado para taxa ou gorjeta, o padrão 0.1 e 0.05 serão usados
+return total + (total * taxa) + (total * gorjeta);,
 }
 ```
 
-What if we don't want to pass the parameter at all, like this:
+E se nós não quisermos passar o parâmetro, dessa forma:
 
 ``` javascript
-// The 0.15 will be bound to the second argument, tax even if in our intention it was to set 0.15 as the tip
+// O 0.15 será sujeito ao segundo argumento taxa, mesmo se nossa intenção for setar 0.15 para a gorjeta
 calculatePrice(100, 0.15)
 ```
 
-We can solve by doing this:
+Nós podemos resolver fazendo isso:
 
 ``` javascript
-// In this case 0.15 will be bound to the tip
+// Nesse caso 0.15 será vinculado a gorjeta
 calculatePrice(100, undefined, 0.15)
 ```
 
-It works, but it's not very nice, how to improve it?
+Funciona, mas não é tão legal, como melhorar?
 
-With **destructuring** we can write this:
+Com **desestruturação** nós podemos escrever isso:
 
 ``` javascript
-const Bill = calculatePrice({ tip: 0.15, total:150 });
+const Bill = calcularPreco({ gorjeta: 0.15, total:150 });
 ```
 
-We don't even have to pass the parameters in the same order as when we declared our function, since we are calling them the same way as the arguments JavaScript will know how to match them.
+Nós não temos nem que passar os parâmetros na mesma ordem conforme nós declaramos nossa função, uma vez que nós as chamamos da mesma forma que os argumentos o JavaScript saberá como lidar com elas.
 
-Don't worry about destructuring, we will talk about it in Chapter 6.
+Não se preocupe com a desestruturação, nós falaremos sobre ela no Capítulo 6.
