@@ -1,143 +1,141 @@
-# Chapter 7: Iterables and looping
+# Capítulo 7: Iterações e repetições
 
-ES6 introduced a new type of loop, the `for of` loop.
+ES6 apresentou um novo tipo de estrutura de repetição, o `for of`.
 
 &nbsp;
 
-## The `for of` loop
+## O `for of`
 
-### Iterating over an array
+### Iteração de um array
 
-Usually we would iterate using something like this:
+Normalmente nós iteraríamos usando algo assim:
 
 ``` js
-var fruits = ['apple','banana','orange'];
-for (var i = 0; i < fruits.length; i++){
-  console.log(fruits[i]);
+var frutas = ['maçã','banana','laranja'];
+for (var i = 0; i < frutas.length; i++){
+  console.log(frutas[i]);
 }
-// apple
+// maçã
 // banana
-// orange
+// laranja
 ```
 
-Look at how we can achieve the same with a `for of` loop:
+Veja como nós podemos conseguir a mesma coisa usando o `for of`:
 
 ``` js
-const fruits = ['apple','banana','orange'];
-for(const fruit of fruits){
-  console.log(fruit);
+const fruits = ['maçã','banana','laranja'];
+for(const fruta of frutas){
+  console.log(fruta);
 }
-// apple
+// maçã
 // banana
-// orange
+// laranja
 ```
 
 &nbsp;
 
-### Iterating over an object
+### Iteração de um objeto
 
-Objects are **non iterable** so how do we iterate over them?
-We have to first grab all the values of the object using something like `Object.keys()` or the new ES6 `Object.entries()`.
-
+Objetos são **não iteraveis** então como nós faremos para eles iterarem?
+Primeiro nós temos que obter todos os valores do objeto usando `Object.keys()` ou `Object.entries()` apresentado no ES6.
 
 ```js
-const car = {
-  maker: "BMW",
-  color: "red",
-  year : "2010",
+const carro = {
+  fabricante: "BMW",
+  cor: "red",
+  ano : "2010",
 }
 
-for (const prop of Object.keys(car)){
-  const value = car[prop];
-  console.log(value,prop);
+for (const prop of Object.keys(carro)){
+  const valor = carro[prop];
+  console.log(valor,prop);
 }
-// BMW maker
-// red color
-// 2010 year
+// BMW fabricante
+// red cor
+// 2010 ano
 ```
 
 &nbsp;
 
-## The `for in` loop
+## O `for in`
 
-Even though it is not a new ES6 loop, let's look at the `for in` loop to understand what differentiate it compared to the `for of`.
+Embora não seja uma nova estrutura de repetição do ES6, vamos ver o `for in` para entender qual a diferença quando comparado ao `for of`.
 
-The `for in` loop is a bit different because it will iterate over all the [enumerable properties](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Enumerability_and_ownership_of_properties) of an object in no particular order.
+O `for in` é um pouco diferente pois ele vai iterar sobre todas as [propriedades enumeradas](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Enumerability_and_ownership_of_properties) de um objeto e não na ordem particular.
 
-It is therefore suggested not to add, modify or delete properties of the object during the iteration as there is no guarantee that they will be visited, or if they will be visited before or after being modified.
+Portanto, sugere-se não adicionar, modificar ou excluir propriedades do objeto durante a iteração já que não há garantia de que eles serão visitados, ou se eles serão visitados antes de serem modificados.
 
 ```js
-const car = {
-  maker: "BMW",
-  color: "red",
-  year : "2010",
+const carro = {
+  fabricante: "BMW",
+  cor: "red",
+  ano : "2010",
 }
-for (const prop in car){
-  console.log(prop, car[prop]);
+for (const prop in carro){
+  console.log(prop, carro[prop]);
 }
-// maker BMW
-// color red
-// year 2010
+// fabricante BMW
+// cor red
+// ano 2010
 ```
 
 &nbsp;
 
-## Difference between `for of` and `for in`
+## A diferença entre `for of` e `for in`
 
-The first difference we can see is by looking at this example:
+A primeira diferença que nós podemos ver esta neste exemplo:
 
 ```js
-let list = [4, 5, 6];
+let lista = [4, 5, 6];
 
-// for...in returns a list of keys
-for (let i in list) {
+// for...in retorna uma lista de chaves
+for (let i in lista) {
    console.log(i); // "0", "1", "2",
 }
 
 
-// for ...of returns the values 
-for (let i of list) {
+// for ...of retorna os valores
+for (let i of lista) {
    console.log(i); // "4", "5", "6"
 }
 ```
 
-`for in` will return a list of keys whereas the `for of` will return a list of values of the numeric properties of the object being iterated.
+`for in` retornará uma lista de chaves enquanto o `for of` retornará uma lista de vlores da propriedade numérica do objeto que está sendo iterado.
 
-
-Another differences is that we **can** stop a `for of` loop but we can't do the same with a `for in` loop.
+Uma outra diferença é que nós **podemos** parar um `for of` mas não podemos fazer o mesmo com um `for in`.
 
 ```js
-const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const digitos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-for (const digit of digits) {
-  if (digit % 2 === 0) {
+for (const digito of digitos) {
+  if (digito % 2 === 0) {
     continue;
   }
-  console.log(digit);
+  console.log(digito);
 }
 // 1 3 5 7 9
 ```
 
-The last important difference I want to talk is that the `for in` loop will iterate over new properties added to the object.
+A última importante diferença que eu quero falar é que o `for in` vai iterar sobre uma nova propriedade adicionada ao objeto.
 
 ```js
-const fruit = ["apple","banana", "orange"];
+const fruta = ["maçã","banana", "laranja"];
 
-fruit.eat = "gnam gnam";
+fruta.comer = "nhame nhame";
 
-for (const prop of fruit){
+for (const prop of fruta){
   console.log(prop);
 }
-// apple
+// maçã
 // banana
-// orange
+// laranja
 
-for (const prop in fruit){
-  console.log(fruit[prop]);
+for (const prop in fruta){
+  console.log(fruta[prop]);
 }
 
-// apple
+// maçã
 // banana
-// orange
-// gnam gnam
+// laranja
+// nhame nhame
 ```
