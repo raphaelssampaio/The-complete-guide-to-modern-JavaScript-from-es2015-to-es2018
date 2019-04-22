@@ -1,24 +1,24 @@
-# Chapter 9: Spread operator and rest parameters
+# Capítulo 9: Operador spread e parâmetros rest
 
-## The Spread operator
+## O operador spread
 
-According to MDN:
-> Spread syntax allows an iterable such as an array expression or string to be expanded in places where zero or more arguments (for function calls) or elements (for array literals) are expected, or an object expression to be expanded in places where zero or more key-value pairs (for object literals) are expected.
+De acordo com o MDN:
+> A sintaxe spread permite um iterável tal como a de uma expressão array ou string ser expandida em locais onde zero ou mais argumentos (para chamada de função) ou elementos (para arrays literais) são esperados, ou uma expressão objeto ser expandida em locais onde zero ou mais chaves-valores (para objetos literais) são esperados.
 
 &nbsp;
 
-### Combine arrays
+### Combinar arrays
 
 ``` js
-const veggie = ["tomato","cucumber","beans"];
-const meat = ["pork","beef","chicken"];
+const vegetais = ["tomate", "pepino", "feijão"];
+const carnes = ["porco", "bife", "galinha"];
 
-const menu = [...veggie, "pasta", ...meat];
+const menu = [...vegetais, "pasta", ...alimentos];
 console.log(menu);
-// Array [ "tomato", "cucumber", "beans", "pasta", "pork", "beef", "chicken" ]
+// Array [ "tomate", "pepino", "feijão", "pasta", "porco", "bife", "galinha" ]
 ```
 
-The `...` is the spread syntax, and it allowed us to grab all the individual values of the arrays veggie and meat and put them inside the array menu and at the same time add a new item in between them.
+Os `...` compõem a sintaxe spread, e ele nos permite obter todos os valores individuais dos arrays vegetais e carnes e os colocam dentro do array menu no mesmo momento em que adicionam novos itens entre eles.
 
 &nbsp;
 
