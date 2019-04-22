@@ -22,130 +22,129 @@ Os `...` compõem a sintaxe spread, e ele nos permite obter todos os valores ind
 
 &nbsp;
 
-### Copy arrays
+### Copiar arrays
 
-The spread syntax is very helpful if we want to create a copy of an array.
-
+A sintaxe spread é muito útil se nós queremos criar uma cópia de um array.
 
 ``` js
-const veggie = ["tomato","cucumber","beans"];
-const newVeggie = veggie;
+const vegetais = ["tomate", "pepino", "feijão"];
+const novosVegetais = vegetais;
 
-// this may seem like we created a copy of the veggie array but look now
+// isso pode parecer que nós criamos uma cópia de um array vegetal mas veja agora
 
-veggie.push("peas");
-console.log(veggie);
-// Array [ "tomato", "cucumber", "beans", "peas" ]
+vegetais.push("ervilhas");
+console.log(vegetais);
+// Array [ "tomate", "pepino", "feijão", "ervilhas" ]
 
-console.log(newVeggie);
-// Array [ "tomato", "cucumber", "beans", "peas" ]
+console.log(novosVegetais);
+// Array [ "tomate", "pepino", "feijão", "ervilhas" ]
 ```
 
-Our new array also changed, but why? Because we did not actually create a copy but we just referenced our old array in the new one.
-This is how we would usually make a copy of an array in ES5 and earlier.
+Nosso novo array também mudou, mas por quê? Porque na verdade nós não criamos uma cópia mas simplesmente referenciamos nosso antigo array em um novo.
+É assim como nós normalmente fazemos uma cópia de um array no ES5 e antes dele.
 
 ``` js
-const veggie = ["tomato","cucumber","beans"];
-const newVeggie = [].concat(veggie);
-// we created an empty array and put the values of the old array inside of it
+const vegetais = ["tomate", "pepino", "feijão"];
+const novosVegetais = [].concat(vegetais);
+// nós criamos um array vazio e colocamos os valores do antigo array dentro dele
 ```
 
-And this is how we would do the same using the spread syntax:
+E é assim como nós faríamos usando a sintaxe spread:
 
 ``` js
-const veggie = ["tomato","cucumber","beans"];
-const newVeggie = [...veggie];
+const vegetais = ["tomate", "pepino", "feijão"];
+const novosVegetais = [...vegetais];
 ```
 
 &nbsp;
 
-### Spread into a function
+### Spread dentro de uma função
 
 ``` js
-// OLD WAY
-function doStuff (x, y, z) {
+// Jeito antigo
+function facaAlgo (x, y, z) {
   console.log(x + y + z);
  }
 var args = [0, 1, 2];
 
-// Call the function, passing args
-doStuff.apply(null, args);
+// Chama a função, passando args
+facaAlgo.apply(null, args);
 
-// USE THE SPREAD SYNTAX
-
-doStuff(...args);
+// USE A SINTAXE SPREAD
+facaAlgo(...args);
 // 3 (0+1+2);
 console.log(args);
 // Array [ 0, 1, 2 ]
 ```
 
-We can replace the `.apply()` syntax and just use the spread operator.
-
-Let's look at another example:
 
 
-``` js
-const name = ["Alberto", "Montalesi"];
+Nós podemos trocar a sintaxe `.apply()` e só usar o operador spread.
 
-function greet(first, last) {
-  console.log(`Hello ${first} ${last}`);
-}
-
-greet(...name);
-// Hello Alberto Montalesi
-```
-
-The two values of the array are automatically assigned to the two arguments of our function.
-
-What if we provide more values than arguments?
+Vamos ver outro exemplo:
 
 ``` js
-const name = ["Jon", "Paul", "Jones"];
+const nome = ["Alberto", "Montalesi"];
 
-function greet(first, last) {
-  console.log(`Hello ${first} ${last}`);
+function saude(primeiro, ultimo) {
+  console.log(`Olá ${primeiro} ${ultimo}`);
 }
-greet(...name);
-// Hello Jon Paul
+
+saude(...nome);
+// Olá Alberto Montalesi
 ```
 
-We provided 3 values inside our array but only have 2 arguments in our function therefore the last one is left out.
+Os dois valores do array são automaticamente atribuídos para os dois argumentos da nossa função.
+
+E se nós fornecermos mais valores do que argumentos?
+
+``` js
+const nome = ["Jon", "Paul", "Jones"];
+
+function saude(primeiro, ultimo) {
+  console.log(`Olá ${primeiro} ${ultimo}`);
+}
+saude(...nome);
+// Olá Jon Paul
+```
+
+Nós fornecemos 3 valores dentro do nosso array mas só temos 2 argumentos na nossa função, portanto o último é deixado de lado.
 
 &nbsp;
 
-### Spread in Object Literals (ES 2018 / ES9)
+### Spread em Objetos Literais (ES 2018 / ES9)
 
-This feature is not part of ES6, but as we are already discussing this topic, it is worth mentioning that ES2018 will introduce the Spread operator for Objects.
-Let's look at an example:
+Esta funcionalidade não é parte da ES6, mas como nós já estamos discutindo este tópico, vale a pena mencionar que no ES2018 irá apresentar o operador Spread para Objetos.
+Vejamos o exemplo:
 
 ``` js
-let person = {
-  name : "Alberto",
-  surname: "Montalesi",
-  age: 25,
+let pessoa = {
+  nome : "Alberto",
+  sobrenome: "Montalesi",
+  idade: 25,
 }
 
-let clone = {...person};
+let clone = {...pessoa};
 console.log(clone);
-// Object { name: "Alberto", surname: "Montalesi", age: 25 }
+// Object { nome: "Alberto", sobrenome: "Montalesi", idade: 25 }
 ```
 
-You can read more about ES2018 in Chapter 20.
+Nós podemos ler mais sobre o ES2018 no Capítulo 20.
 
 ---
 &nbsp;
 
-## The Rest parameter
+## O parâmetro Rest
 
-The rest syntax looks exactly the same as the spread, 3 dots `...` but it is quite the opposite of it. Spread expands an array, while rest condenses multiple elements into a single one.
+A sintaxe rest parece exatamente a mesma coisa do spread, 3 pontos `...` mas é justamente o oposto. O spread expande um array, enquanto o rest condensa múltiplos elementos em um único.
 
 ```js
 
-const runners = ["Tom", "Paul", "Mark", "Luke"];
-const [first,second,...losers] = runners;
+const corredores = ["Tom", "Paul", "Mark", "Luke"];
+const [primeiro, segundo, ...perdedores] = corredores;
 
-console.log(...losers);
+console.log(...perdedores);
 // Mark Luke
 ```
 
-We stored the first two values inside the `const` first and second and whatever was left we put it inside losers using the rest parameter.
+Nós armazenamos o primeiro e o segundo valor dentro da `const` primeiro e segundo e resto foi colocado dentro de perdedores usando o parâmetro rest.
