@@ -4,7 +4,7 @@ ES6 apresentou um novo tipo de estrutura de repetição, o `for of`.
 
 &nbsp;
 
-## O `for of`
+## A estrutura de repetição `for of`
 
 ### Iteração de um array
 
@@ -57,7 +57,7 @@ for (const prop of Object.keys(carro)){
 
 &nbsp;
 
-## O `for in`
+## A estrutura de repetição `for in`
 
 Embora não seja uma nova estrutura de repetição do ES6, vamos ver o `for in` para entender qual a diferença quando comparado ao `for of`.
 
