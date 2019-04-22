@@ -1,52 +1,54 @@
-# Chapter 15: Proxies
+# Capítulo 15: Proxies
 
-## What is a Proxy?
+## O que é um Proxy?
 
-From MDN:
+Segundo o MDN:
 
-> the Proxy object is used to define custom behavior for fundamental operations (e.g. property lookup, assignment, enumeration, function invocation, etc).
+> O objeto Proxy é usado para definir um comportamento personalizado para operações fundamentais (e.g. 
+
+> the Proxy object is used to define custom behavior for fundamental operations (e.g. propriedade lookup, atribuição, enumeração, função invocação, etc).
 
 &nbsp;
 
-## How to use a `Proxy` ?
+## Como usar uma `Proxy` ?
 
-This is how we create a Proxy:
+É assim que nós criamos um Proxy:
 
 ``` js
 var x = new Proxy(target,handler)
 ```
 
-- our `target` can be anything, from an object, to a function, to another `Proxy`
-- a `handler` is an object which will define the behavior of our `Proxy` when an operation is performed on it
+- nosso `target` pode ser qualquer coisa, seja objeto, função, ou outro `Proxy`
+- um `handler` é um objeto que vai definir o comportamento do nosso `Proxy` quando um operador é executado nele
 
 ``` js
-// our object
-const dog = { breed: "German Shephard", age: 5}
+// nosso objeto
+const cachorro = { raca: "Pastor Alemão", idade: 5}
 
-// our Proxy
-const dogProxy = new Proxy(dog, {
-  get(target,breed){
-    return target[breed].toUpperCase();
+// nosso Proxy
+const cachorroProxy = new Proxy(cachorro, {
+  get(target,raca){
+    return target[raca].toUpperCase();
   },
-  set(target, breed, value){
-    console.log("changing breed to...");
-    target[breed] = value;
+  set(target, raca, valor){
+    console.log("mudando a raça para...");
+    target[raca] = valor;
   }
 });
 
 dogProxy.breed;
-// "GERMAN SHEPHARD"
-dogProxy.breed = "Labrador";
-// changing breed to... 
+// "PASTOR ALEMÃO"
+cachorroProxy.raca = "Labrador";
+// mudando a raca para...
 // "Labrador"
-dogProxy.breed;
+cachorroProxy.raca;
 // "LABRADOR"
 ```
 
-When we call the `get` method we step inside the normal flow and change the value of the breed to uppercase.
+Quando nós chamamos o método `get` nós damos um passo adentro do fluxo normal e mudamos o valor da raça para maiúsculo.
 
-When setting a new value we step in again and log a short message before setting the value.
+Ao definir o novo valor nós damos outro passo e mostramos uma mensagem curta antes de setar o valor.
 
-Proxies can be very useful, for example if your object is a phone number.
+Proxies podem ser muito úteis, por exemplo se nosso objeto é um número de telefone.
 
-You can take the value given by the user and format it to match the standard formatting of your country.
+Você pode pegar o valor dado pelo usuário e formatá-lo para corresponder à formatação padrão do seu país.
