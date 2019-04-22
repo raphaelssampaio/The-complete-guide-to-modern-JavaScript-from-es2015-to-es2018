@@ -1,7 +1,7 @@
-# Conclusion
+# Conclusão
 
-A sincere thank you to you for making it this far. This is my first book and knowing that somebody read it all fills me with joy.
+Um sincero obrigado a você por ter chegado tão longe. Este é meu primeiro livro e saber que alguém lê tudo me enche de alegria.
 
-I hope that you found it useful and if that is the case I suggest you to follow my new [website](https://www.inspiredwebdev.com/) and my [Medium](https://medium.com/@labby92) where I will write articles about Web Development.
+Espero que você tenha achado útil e, se for esse o caso, sugiro que você siga meu novo [website](https://www.inspiredwebdev.com/) e meu [Medium](https://medium.com/@labby92) onde vou escrever artigos sobre Desenvolvimento Web.
 
-Thank you very much for your time and your support.
+Muito obrigado pelo seu tempo e seu apoio.
