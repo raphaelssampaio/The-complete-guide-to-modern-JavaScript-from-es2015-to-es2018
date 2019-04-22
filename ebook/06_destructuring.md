@@ -1,46 +1,46 @@
-# Chapter 6: Destructuring
+# Capítulo 6: Desestruturação
 
-MDN defines **destructuring** like this:
+MDN define **desestruturação** dessa forma:
 
-> The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects, into distinct variables.
+> A sintaxe da atribuição de desestruturação é uma expressão JavaScript que torna possível o desempacotamento de valores de um array, ou propriedades de objetos, dentro de variáveis distintas.
 
-Let's start with **destructuring objects** first.
+Vamos começar com **desestruturação de objetos** primeiro.
 
 &nbsp;
 
-## Destructuring Objects
+## Desestruturação de objetos
 
-To create variables from an object we used to do this:
+Para criar variáveis de um objeto nós costumamos fazer o seguinte:
 
 ```js
-var person  = {
-  first: "Alberto",
-  last: "Montalesi"
+var pessoa  = {
+  primeiro: "Alberto",
+  ultimo: "Montalesi"
 }
 
-var first = person.first;
-var last = person.last;
+var primeiro = pessoa.primeiro;
+var ultimo = pessoa.ultimo;
 ```
 
-In ES6 we can now write this:
+No ES6 nós podemos agora escrever assim:
 
 ```js
-const person = {
-  first: "Alberto",
-  last: "Montalesi"
+const pessoa = {
+  primeiro: "Alberto",
+  ultimo: "Montalesi"
 }
 
-const { first, last } = person;
+const { primeiro, ultimo } = pessoa;
 ``` 
 
-Since our `const` have the same name as the properties we want to grab, we don't have to specify `person.first` and `person.last` anymore.
+Já que nossa `const` tem o mesmo nome das propriedades que nós queremos pegar, nós não temos mais que especificar `pessoa.nome` e `pessoa.ultimo`.
 
-The same applies even when we have nested data, such as what we could get from an API.
+O mesmo se aplica quando nós temos dados aninhados, como o que podemos obter de uma API
 
 ```js
-const person = {
-  name: "Alberto",
-  last: "Montalesi",
+const pessoa = {
+  nome: "Alberto",
+  ultimo: "Montalesi",
   links:{
     social: {
       facebook: "https://www.facebook.com/alberto.montalesi",
@@ -49,22 +49,22 @@ const person = {
   }
 }
 
-const { facebook } = person.links.social;
+const { facebook } = pessoa.links.social;
 ```
 
-We are not limited to name our variable the same as the property of the object, we can also rename it like this:
+Nós não limitamos o nome da nossa variável ao mesmo nome das propriedades do objeto, nós podemos renomeá-la dessa forma:
 
 
 ```js
-const { facebook:fb } = person.links.social;
-// we rename the variable as *fb*
+const { facebook:fb } = ppessoa.links.social;
+// nós renomeamos a variável para *fb* 
 ```
 
-We can also pass in **default values** like this:
+Nós podemos também passar **valores padrões** como esse:
 
 ```js
-const { facebook:fb = "https://www.facebook.com"} = person.links.social;
-// we renamed the variable to *fb* and we also set a default value to it
+const { facebook:fb = "https://www.facebook.com"} = pessoa.links.social;
+// nós renomeamos a variável para *fb* e também setamos um valor padrão para ela
 ```
 
 
@@ -72,64 +72,64 @@ const { facebook:fb = "https://www.facebook.com"} = person.links.social;
 &nbsp;
 
 
-## Destructuring Arrays
+## Desestruturação de arrays
 
-The first difference we notice when **destructuring arrays** is that we are going to use `[]` and not `{}`.
+A primeira diferença que nós identificamos quando **desestruturamos arrays** é que nós iremos usar `[]` e não `{}`.
 
 ```js
-const person = ["Alberto","Montalesi",25];
-const [name,surname,age] = person;
+const pessoa = ["Alberto","Montalesi",25];
+const [nome,sobrenome,idade] = pessoa;
 ```
 
-What if the number of variables that we create is less than the elements in the array?
+E se o número de variáveis que nós criamos for menor do que os elementos no array?
 
 ```js
-const person = ["Alberto","Montalesi",25];
-// we leave out age, we don't want it
-const [name,surname] = person;
-//the value of age will not be bound to any variable.
-console.log(name,surname);
+const pessoa = ["Alberto","Montalesi",25];
+// nós omitimos a idade, nós não queremos ela
+const [nome,sobrenome] = pessoa;
+// o valor da idade não será passado para nenhuma variável.
+console.log(nome,sobrenome);
 // Alberto Montalesi
 ```
 
-Let's say we want to grab all the other values remaining, we can use the **rest operator**:
+Vamos falar que nós queremos obter todos os outros valores restantes, nós podemos usar o **operador rest**:
 
 ```js
-const person = ["Alberto", "Montalesi", "pizza", "ice cream", "cheese cake"];
-// we use the **rest operator** to grab all the remaining values
-const [name,surname,...food] = person ;
-console.log(food);
-// Array [ "pizza", "ice cream", "cheese cake" ]
+const pessoa = ["Alberto", "Montalesi", "pizza", "sorvete", "bolo de queijo"];
+// nós usamos o **operador rest** para obter todos os valores restantes
+const [nome,sobrenome,...comida] = pessoa ;
+console.log(comida);
+// Array [ "pizza", "sorvete", "bolo de queijo" ]
 ```
 
 &nbsp;
 
-## Swapping variables with destructuring
+## Trocando variáveis com a desestruturação
 
-The destructuring assignment makes it **extremely easy** to swap variables, just look at this example:
+A atribuição de desestruturação faz com o que a troca de variáveis seja **extremamente fácil**, veja o seguinte exemplo:
 
 ```js
-let hungry = "yes";
-let full = "no";
-// after we eat we don't feel hungry anymore, we feel full, let's swap the values
+let comFome = "sim";
+let cheio = "nao";
+// depois de comer nós não sentimos mais fome, nós estamos cheios, valos trocar os valores
 
-[hungry, full] = [full, hungry];
-console.log(hungry,full);
-// no yes
+[comFome, cheio] = [cheio, comFome];
+console.log(comFome,cheio);
+// nao sim
 ```
 
-It can't get easier than this to swap values.
+Não é mais fácil do que isso trocar valores.
 
 &nbsp;
 
-## Destructuring functions
+## Desestruturação de funções
 
 ```js
-function totalBill({ total, tax = 0.1 }) {
-  return total + (total * tax);
+function contaTotal({ total, taxa = 0.1 }) {
+  return total + (total * taxa);
 }
 
-// as you see since we are using the same names, we don't have to pass the arguments in the same order as when we declared the function
-// we are also overriding the default value we set for the tax
-const bill = totalBill({ tax: 0.15, total: 150});
+// como você vê, uma vez que usamos os mesmos valores, nós não temos que passar os argumentos na mesma ordem em que nós declaramos a função
+// nós estamos também substituindo o valor padrão que nós setamos para a taxa
+const conta = contaTotal({ taxa: 0.15, total: 150});
 ```
