@@ -1,80 +1,80 @@
-# Chapter 11: Symbols
+# Capítulo 11: Symbols
 
-ES6 added a new type of primitive called **Symbols**. What are they? And what do they do?
+ES6 adicionou um novo tipo primitivo chamado **Symbols**. O que eles são? E o que eles fazem?
 
-Symbols are **always unique** and we can use them as identifiers for object properties.
+Symbols são **sempre únicos** e nós podemos usá-los como identificadores para propriedades de objetos.
 
-Let's create a `Symbol` together:
+Vamos criar um `Symbol` juntos:
 
 ``` js
-const me = Symbol("Alberto");
-console.log(me);
+const eu = Symbol("Alberto");
+console.log(eu);
 // Symbol(Alberto)
 ```
 
-We said that they are always unique, let's try to create a new symbol with the same value and see what happens:
+Nós dizemos que eles são sempre únicos, vamos tentar criar um novo symbol com o mesmo valor e ver o que acontece:
 
 ``` js
-const me = Symbol("Alberto");
-console.log(me);
+const eu = Symbol("Alberto");
+console.log(eu);
 // Symbol(Alberto)
 
 const clone = Symbol("Alberto");
 console.log(clone);
 // Symbol(Alberto)
 
-console.log(me == clone);
+console.log(eu == clone);
 // false
-console.log(me === clone);
+console.log(eu === clone);
 // false
 ```
 
-They both have the same value, but we will never have naming collisions with Symbols as they are always unique.
+Ambos tem o mesmo valor, mas nós nunca iremos ter colisões de nomes com Symbols porque eles são únicos.
 
-As we mentioned earlier we can use them to create as identifiers for object properties, so let's see an example:
+Como mencionamos anteriormente, nós podemos usá-los para criar identificadores para propriedades de objetos, vamos ver um exemplo:
 
 ``` js 
-const office = {
+const escritorio = {
   "Tom" : "CEO",
   "Mark": "CTO",
   "Mark": "CIO",
 }
 
-for (person in office){
-  console.log(person);
+for (pessoa in escritorio){
+  console.log(pessoa);
 }
 // Tom
 // Mark
 ```
 
-Here we have our office object with 3 people, two of which share the same name.
-To avoid naming collisions we can use symbols.
+Aqui nós temos nosso objeto escritorio com 3 pessoas, duas delas tem o mesmo nome.
+Para evitar colisões de nomes nós podemos usar symbols.
 
 ``` js
-const office = {
+const escritorio = {
   [Symbol("Tom")] : "CEO",
   [Symbol("Mark")] : "CTO",
   [Symbol("Mark")] : "CIO",
 }
 
-for(person in office) {
-  console.log(person);
+for(pessoa in escritorio) {
+  console.log(pessoa);
 }
 // undefined
 ```
 
-We got undefined when we tried to loop over the symbols because they are **not enumerable** so we can't loop over them with a `for in`.
+Nós obtemos undefined quando nós tentamos usar estruturas de repetições por cima dos symbols pois eles **não são enumeráveis** então nós não podemos usar o `for in` neles. 
 
-If we want to retrieve their object properties we can use `Object.getOwnPropertySymbols()`.
+Se nós quisermos recuperar as propriedades de objetos nós podemos usar `Object.getOwnPropertySymbols()`.
 
 ``` js
-const office = {
+const escritorio = {
   [Symbol("Tom")] : "CEO",
   [Symbol("Mark")] : "CTO",
   [Symbol("Mark")] : "CIO",
 };
 
-const symbols = Object.getOwnPropertySymbols(office);
+const symbols = Object.getOwnPropertySymbols(escritorio);
 console.log(symbols);
 // 0: Symbol(Tom)
 ​// 1: Symbol(Mark)
@@ -82,16 +82,16 @@ console.log(symbols);
 ​// length: 3
 ```
 
-We retrieved the array but to be able to access the properties we to use `map`.
+Nós recuperamos o array mas para ser capaz de acessar as propriedades nós usamos `map`.
 
 ```js
-const symbols = Object.getOwnPropertySymbols(office);
-const value = symbols.map(symbol => office[symbol]);
-console.log(value);
+const symbols = Object.getOwnPropertySymbols(escritorio);
+const valor = symbols.map(symbol => office[symbol]);
+console.log(valor);
 // 0: "CEO"
 ​// 1: "CTO"
 ​// 2: "CIO"
 ​// length: 3
 ```
 
-Now we finally got the array containing all the values of our symbols.
+Finalmente nós agora obtivemos o array contendo todos os valores dos nossos symbols.
