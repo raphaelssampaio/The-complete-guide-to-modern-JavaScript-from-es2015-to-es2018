@@ -1,27 +1,27 @@
-# Chapter 13: Promises
+# Capítulo 13: Promessas
 
-## What is a Promise?
+## O que é uma Promessa (Promise)?
 
-From MDN:
-> A Promise is an object representing the eventual completion or failure of an asynchronous operation.
+De acordo com o MDN:
+> Uma Promise é um objeto que representa a eventual conclusão ou falha de uma operação assincrona.
 
-JavaScript works almost entirely asynchronously which means that when we are retrieving something from an API, for example, our code won't stop executing. Look at this example to understand what is going to happen:
+JavaScript trabalha quase que inteiramente de modo assíncrono, o que significa que quando nós estamos recebendo algo de uma API, por exemplo, nosso código não vai parar de executar. Veja este exemplo para entender o que vai acontecer:
 
 ```js
-const data = fetch('your-api-url-goes-here');
-console.log('Finished');
+const data = fetch('sua-url-da-api-vai-aqui');
+console.log('Finalizado');
 console.log(data);
 ```
 
-The code won't stop once it hits the fetch, therefore our next `console.log` will be executed before we actually get some value in return, meaning that the `console.log(data)` will be empty.
+O código não vai parar uma vez que ele atinge o fetch, portanto nosso próximo `console.log` vai ser executado antes de nós recebermos algum valor no retorno, o que significa que o `console.log(data)` será vazio.
 
-To avoid this we would use **callbacks** or **promises**.
+Para evitar isso nós usaríamos **callbacks** ou **primises**.
 
 &nbsp;
 
-### Callback hell
+### O inferno do callback
 
-You may have heard of something called **callback hell** which looks roughly like this:
+Talvez você ouviu algo chamado de **inferno do callback** que parece algo assim:
 
 ``` js
 fs.readdir(source, function (err, files) {
@@ -50,102 +50,102 @@ fs.readdir(source, function (err, files) {
 })
 ```
 
-We try to write our code in a way where executions happens visually from top to bottom, causing excessive nesting on functions and result in what you can see above.
+Nós tentamos escrever nosso código de um jeito onde as execuções aconteçam visualmente do topo à parte inferior, causando aninhamentos excessivos nas funções e o resultado é o que você pode ver acima. 
 
-To improve your callbacks you can read this [article](http://callbackhell.com/).
+Para melhorar suas callbacks você pode ler este [artigo](http://callbackhell.com/). *(Em inglês somente)*
 
-Here we will focus on how to write promises.
+Aqui nós focaremos em como escrever promessas (promises).
 
 &nbsp;
 
-## Create your own promise
+## Crie sua própria promessa
 
 ```js
-const myPromise = new Promise((resolve, reject) => {
-  // your code goes here
+const minhaPromessa = new Promessa((resolve, reject) => {
+  // seu código vai aqui
 });
 ```
 
-This is how you create your own promise, `resolve` and `reject` will be called once the promise is finished.
+É assim que você cria sua própria promessa, `resolve` e `reject` serão chamados uma vez que a promessa é finalizada.
 
-We can immediately return it to see what we would get:
+Nós podemos imediatamente retornar isso para ver o que nós obteríamos:
 
 ```js
-const myPromise = new Promise((resolve, reject) => {
-  resolve("The value we get from the promise");
+const minhaPromessa = new Promessa((resolve, reject) => {
+  resolve("O valor que nós obtivemos da promessa");
 });
 
-myPromise.then(
+minhaPromessa.then(
   data => {
     console.log(data);
   });
-// The value we get from the promise
+// O valor que nós obtivemos da promessa
 ```
 
-We immediately resolved our promise and see the result in the console.
+Imediatamente nós finalizamos nossa promessa e vemos o resultado no console.
 
-We can combine a `setTimeout()` to wait a certain amount of time before resolving.
+Nós podemos combinar um `setTimeout()` para esperar um certo período de tempo antes de finalizar.
 
 ```js
-const myPromise = new Promise((resolve, reject) => {
+const minhaPromessa = new Promessa((resolve, reject) => {
   setTimeout(() => {
-      resolve("The value we get from the promise");
+      resolve("O valor que nós obtivemos da promessa");
     }, 2000);
 });
 
-myPromise.then(
+minhaPromessa.then(
   data => {
     console.log(data);
   });
-// after 2 seconds we will get:
-// The value we get from the promise
+// depois de 2 segundos nós iremos obter:
+// O valor que nós obtivemos da promessa
 ```
 
-These two examples are very simple but **promises** are very useful when dealing with big requests of data.
+Esses dois exemplos são bem simples mas **promessas (promises)** são bem úteis quando lidamos com grandes requisições de dados.
 
-In the example above we kept it simple and only resolved our promise but in reality you will also encounter errors so let's see how to deal with them:
+No exemplo acima nós o mantivemos simples e somente finalizamos nossa promessa mas na realidade você também irá encontrar erros, então vamos ver como lidar com eles:
 
 ``` js
-const myPromise = new Promise((resolve, reject) => {
+const minhaPromessa = new Promessa((resolve, reject) => {
   setTimeout(() => {
-      reject(Error("this is our error"));
+      reject(Error("este é o nosso erro"));
     }, 2000);
 });
 
-myPromise
+minhaPromessa
   .then(data => {
     console.log(data);
   })
   .catch(err => {
     console.error(err);
   })
-  // Error: this is our error
+  // Error: este é o nosso erro
   // Stack trace:
-  // myPromise</<@debugger eval code:3:14
+  // minhaPromessa</<@debugger eval code:3:14
 ```
 
-We use `.then()` to grab the value when the promise resolves and `.catch()` when the promise rejects.
+Usamos `.then()` para pegar o valor quando a promessa é finalizada e `.catch()` quando a promessa falha.
 
-If you see our error log you can see that it tells us where the error occured, that is because we wrote `reject(Error("this is our error"));` and not simply `reject("this is our error");`.
+Se você ver o log do nosso erro você pode notar que ele nos fala onde o erro aconteceu, isso porque nós escrevemos `reject(Error("este é o nosso erro"));` e não simplesmente `reject("este é o nosso erro");`.
 
 &nbsp;
 
-### Chaining promises
+### Encadeando promessas
 
-We can chain promises one after the other, using what was returned from the previous one as the base for the subsequent one, whether the promise resolved or got rejected.
+Nós podemos encadear promessas uma antes da outra, usando o que foi retornado da anterior como base para a seguinte, se a promessa for finalizada ou se houve falha.
 
 ``` js
-const myPromise = new Promise((resolve, reject) => {
+const minhaPromessa = new Promessa((resolve, reject) => {
   resolve();
 });
 
-myPromise
+minhaPromessa
   .then(data => {
-    // take the data returned and call a function on it
-    return doSomething(data);
+    // pega o dado retornado e chama uma função nele
+    return facaAlgumaCoisa(data);
   })
   .then(data => {
-    // log the data that we got from the previous promise
+    // console.log do dado que nós obtemos da promessa anterior
     console.log(data);
   })
   .catch(err => {
@@ -153,56 +153,56 @@ myPromise
   })
 ```
 
-We called a function (it can do whatever you want, in this case it does nothing) and we passed the value down to the next step where we logged it.
+Nós chamamos uma função (ela pode fazer o que você quiser, nesse caso ela não faz nada) e nós passamos o valor para o próximo passo onde nós damos um console.log nele.
 
-You can chain as many promises as you want and the code will still be more readable and shorter than what we have seen above in the **callback hell**.
+Você pode encadear quantas promessas você quiser e o código ainda será mais legível e menor do que esse que nós vimos acima no **inferno do callback**.
 
-We are not limited to chaining in case of success, we can also chain when we get a `reject`.
+Nós não estamos limitados a encadeamento no caso de sucesso, nós também podemos encadear quando nós recebemos uma `falha (reject)`.
 
 ```js
-const myPromise = new Promise((resolve, reject) => {
+const minhaPromessa = new Promessa((resolve, reject) => {
   resolve();
 });
 
-myPromise
+minhaPromessa
   .then(data => {
     throw new Error("ooops");
 
-    console.log("first value");
+    console.log("primeiro valor");
   })
   .catch(() => {
-    console.log("catch an error");
+    console.log("pegar um erro");
   })
   .then(data => {
-  console.log("second value");
+  console.log("segundo valor");
   });
-  // catch an error
-  // second value
+  // pegar um erro
+  // segundo valor
 ```
 
-We did not get "first value" because we threw an error therefore we only got the first `.catch()` and the last `.then()`.
+Nós não obtivemos o "primeiro valor" pois nós lançamos um erro, portanto nós só obtivemos o primeiro `.catch()` e o último `.then()`.
 
 &nbsp;
 
 ### `Promise.resolve()` & `Promise.reject()`
 
-`Promise.resolve(`) and `Promise.reject()` will create promises that automatically resolve or reject.
+`Promise.resolve(`) e `Promise.reject()` criarão promessas que automaticamente finalizam ou falham.
 
 ```js
 //Promise.resolve()
-Promise.resolve('Success').then(function(value) {
-  console.log(value); 
-  // "Success"
-}, function(value) {
-  // not called
+Promise.resolve('Sucesso').then(function(valor) {
+  console.log(valor); 
+  // "Sucesso"
+}, function(valor) {
+  // não chamado
 });
 
 // Promise.reject()
-Promise.reject(new Error('fail')).then(function() {
-  // not called
+Promise.reject(new Error('falha')).then(function() {
+  // não chamado
 }, function(error) {
   console.log(error);
-  // Error: fail
+  // Error: falha
 });
 ```
 
@@ -210,85 +210,85 @@ Promise.reject(new Error('fail')).then(function() {
 
 ### `Promise.all()` & `Promise.race()`
 
-`Promise.all()` returns a single Promise that resolves when all promises have resolved.
+`Promise.all()` retorna uma única Promessa que finaliza quando todas as promessas são finalizadas.
 
-Let's look at this example where we have two promises.
+Vamos ver um exemplo onde nós temos duas promessas.
 
 ```js
-const promise1 =  new Promise((resolve,reject) => {
-  setTimeout(resolve, 500, 'first value');
+const promessa1 =  new Promessa((resolve,reject) => {
+  setTimeout(resolve, 500, 'primeiro valor');
 });
-const promise2 =  new Promise((resolve,reject) => {
-  setTimeout(resolve, 1000, 'second value');
+const promessa2 =  new Promessa((resolve,reject) => {
+  setTimeout(resolve, 1000, 'segundo valor');
 });
 
-promise1.then(data => {
+promessa1.then(data => {
   console.log(data);
 });
-// after 500 ms
-// first value
-promise2.then(data => {
+// depois de 500 ms
+// primeiro valor
+promessa2.then(data => {
   console.log(data);
 });
-// after 1000 ms
-// second value
+// depois de 1000 ms
+// segundo valor
 ```
 
-They will resolve independently from one another but look at what happens when we use `Promise.all().`
+Elas finalizarão independentemente de uma da outra mas veja o que acontece quando usamos `Promisse.all().`
 
 ```js
 Promise
-  .all([promise1, promise2])
+  .all([promessa1, promessa2])
   .then(data => {
-    const[promise1data, promise2data] = data;
-    console.log(promise1data, promise2data);
+    const[promessa1data, promessa2data] = data;
+    console.log(promessa1data, promessa2data);
   });
-// after 1000 ms
-// first value second value
+// depois de 1000 ms
+// primeiro valor segundo valor
 ```
 
-Our values returned together, after 1000ms (the timeout of the *second* promise) meaning that the first one had to wait the completion of the second one.
+Nossos valores retornaram juntos, depois de 1000ms (o timeout da segunda promessa) significando que a primeira teve que esperar a segunda finalizar.
 
-If we were to pass an empty iterable then it will return an already resolved promise.
+Se nós estivermos passando uma iteração vazia então ele já retornará uma promessa finalizada.
 
-If one of the promise was rejected, all of them would asynchronously reject with the value of that rejection, no matter if they resolved.
+Se uma das promessa falhar, todas elas assincronamente falharão e retornarão o valor da falha, não importa se elas tiverem sido finalizadas.
 
 ```js
-const promise1 =  new Promise((resolve,reject) => {
-  resolve("my first value");
+const promessa1 =  new Promessa((resolve,reject) => {
+  resolve("meu primeiro valor");
 });
-const promise2 =  new Promise((resolve,reject) => {
-  reject(Error("oooops error"));
+const promessa2 =  new Promessa((resolve,reject) => {
+  reject(Error("oooops erro"));
 });
 
-// one of the two promise will fail, but .all will return only a rejection.
-Promise
-  .all([promise1, promise2])
+// uma das promessas irá falhar, mas .all só retornará uma falha.
+Promessa
+  .all([promessa1, promessa2])
   .then(data => {
-    const[promise1data, promise2data] = data;
-    console.log(promise1data, promise2data);
+    const[promessa1data, promessa2data] = data;
+    console.log(promessa1data, promessa2data);
   })
   .catch(err => {
     console.log(err);
   });
-  // Error: oooops error
+  // Error: oooops erro
 ```
 
-`Promise.race()` on the other hand returns a promises that resolves or rejects as soon as one of the promises in the iterable resolves or reject, with the value from that promise.
+Por outro lado o `Promise.race()` retorna uma promessa que finaliza ou falha tão logo uma das promessas na iteração finaliza ou falha, com o valor daquela promessa.
 
 ``` js
-const promise1 =  new Promise((resolve,reject) => {
-  setTimeout(resolve, 500, 'first value');
+const promessa1 =  new Promessa((resolve,reject) => {
+  setTimeout(resolve, 500, 'primeiro valor');
 });
-const promise2 =  new Promise((resolve,reject) => {
-  setTimeout(resolve, 100, 'second value');
+const promessa2 =  new Promessa((resolve,reject) => {
+  setTimeout(resolve, 100, 'segundo valor');
 });
 
-Promise.race([promise1, promise2]).then(function(value) {
-  console.log(value);
-  // Both resolve, but promise2 is faster
+Promessa.race([promessa1, promessa2]).then(function(valor) {
+  console.log(valor);
+  // Ambos finalizaram, mas a promessa2 é mais rápida
 });
-// expected output: "second value"
+// output esperado: "segundo valor"
 ```
 
-If we passed an empty iterable, the race would be pending forever!.
+Se nós passarmos um iterável vazio, o race ficará pendente para sempre!.
