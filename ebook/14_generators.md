@@ -1,157 +1,158 @@
-# Chapter 14: Generators
+# Capítulo 14: Geradores
 
-## What is a Generator?
+## O que é um Gerador?
 
-A generator function is a function that we can start and stop, for an indefinite amount of time, and restart with the possibility of passing additional data at a later point in time.
+Um função gedador é uma função que nós podemos startar ou parar, por tempo indefinido, e restartar com a possibilidade de passar dados adicionais em um ponto posterior no tempo.
 
-
-To create a generator function we write like this:
+Para criar uma função gerador nós fazemos assim:
 
 ``` js
-function* fruitList(){
+function* frutaLista(){
   yield 'Banana';
-  yield 'Apple';
-  yield 'Orange';
+  yield 'Maçã';
+  yield 'Laranja';
 }
 
-const fruits = fruitList();
+const frutas = frutaLista();
 
-fruits;
-// Generator
-fruits.next();
+frutas;
+// Gerador
+frutas.next();
 // Object { value: "Banana", done: false }
-fruits.next();
-// Object { value: "Apple", done: false }
-fruits.next();
-// Object { value: "Orange", done: false }
-fruits.next();
+frutas.next();
+// Object { value: "Maçã", done: false }
+frutas.next();
+// Object { value: "Laranja", done: false }
+frutas.next();
 // Object { value: undefined, done: true }
 ```
 
-Let's have a look at the code piece by piece:
+Nós temos que olhar parte por parte do código
 
-- we declared the function using `function*`
-- we used the keyword `yield` before our content
-- we start our function using `.next()`
-- the last time we call `.next()` we receive and empty object and we get `done: true`
+- nós declaramos a função usando `function*`
+- nós usamos a palavra-chave `yield` antes do nosso conteúdo
+- nós startamos nossa função usando `.next()`
+- o último `.next()` que nós chamamos, nós recebemos um objeto vazio e obtemos `done:true`
 
-Our function is paused between each `.next()` call.
+
+Nossa função é pausada entre cada chamada `.next()`.
 
 
 &nbsp;
 
-## Looping over an array with a generator
+## Dar loop sobre um array com um gerador
 
-We can use the `for of` loop to iterate over our generator and `yield` the content at each loop.
+Nós podemos usar a estrutura de repetição `for of` para iterar sobre o nosso gerador e para `yield` o conteúdo de cada loop.
+
 
 ``` js
-// create an array of fruits
-const fruitList = ['Banana','Apple','Orange','Melon','Cherry','Mango'];
+// criando um array de frutas
+const frutaLista = ['Banana','Maçã','Laranja','Melão','Cereja','Manga'];
 
-// create our looping generator
+// criando nosso loop de gerador
 function* loop(arr) {
-  for (const fruit of fruitList) {
-    yield `I like to eat ${fruit}`;
+  for (const fruta of frutaLista) {
+    yield `Eu gosto de comer ${fruta}`;
   }
 }
 
 
-const fruitGenerator = loop(fruitList);
-fruitGenerator.next();
-// Object { value: "I like to eat Banana", done: false }
-fruitGenerator.next();
-// Object { value: "I like to eat Apple", done: false }
-fruitGenerator.next().value;
-// "I like to eat Orange"
+const frutaGerador = loop(frutaLista);
+frutaGerador.next();
+// Object { value: "Eu gosto de comer Banana", done: false }
+frutaGerador.next();
+// Object { value: "Eu gosto de comer Maçã", done: false }
+frutaGerador.next().value;
+// "Eu gosto de comer Laranja"
 ```
 
-- Our new generator will loop over the array and print one value at a time every time we call `.next()`.
-- if you are only concerned about getting the value, then use `.next().value` and it will not print the status of the generator
+- Nosso novo gerador irá repetir o array e printar um valor por vez sempre que for chamado `.next()`.
+- se você está preocupado apenas em receber o valor, então use o `.next().value` e ele não vai printar o status do gerador
 
 &nbsp;
 
-## Finish the generator with `.return()`
+## Finalizando o gerador com `.return()`
 
-Using `.return()` we can return a given value and finish the generator.
+Usando o `.return()` nós podemos retornar um valor dado e finalizar o gerador.
 
 ``` js
-function* fruitList(){
+function* frutaLista(){
   yield 'Banana';
-  yield 'Apple';
-  yield 'Orange';
+  yield 'Maçã';
+  yield 'Laranja';
 }
 
-const fruits = fruitList();
+const frutas = frutaLista();
 
-fruits.return();
+frutas.return();
 // Object { value: undefined, done: true }
 ```
 
-In this case we got `value: undefined` because we did not pass anything in the `return()`.
+Nesse caso nós obtivemos `value: undefined` porque nós não passamos nada no `return()`.
 
 &nbsp;
 
-## Catching errors with `.throw()`
+## Tratando erros com `.throw()`
 
 
 ``` js
 function* gen(){
   try {
-    yield "Trying...";
-    yield "Trying harder...";
-    yield "Trying even harder..";
+    yield "Tentando...";
+    yield "Tentando muito...";
+    yield "Tentando muito mais..";
   }
   catch(err) {
-    console.log("Error: " + err );
+    console.log("Erro: " + err );
   }
 }
 
-const myGenerator = gen();
-myGenerator.next();
-// Object { value: "Trying...", done: false }
-myGenerator.next();
-// Object { value: "Trying harder...", done: false }
-myGenerator.throw("ooops");
-// Error: ooops
+const meuGerador = gen();
+meuGerador.next();
+// Object { value: "Tentando...", done: false }
+meuGerador.next();
+// Object { value: "entando muito...", done: false }
+meuGerador.throw("ooops");
+// Erro: ooops
 // Object { value: undefined, done: true }
 ```
 
-As you can see when we called `.throw()` the `generator` returned us the error and  finished even though we still had one more `yield` to execute.
+Como você pode ver nós declaramos `.throw()`o `gerador` nos retornou o erro e finalizou embora nós ainda tivéssemos mais um `yield` para executar.
 
 &nbsp;
 
-## Combining Generators with Promises
+## Combinando Geradores com Promessas
 
-As we have previously seen, Promises are very useful for asynchronous programming, and by combining them with generators we can have a very powerful tool at our disposal to avoid problems like the *callback hell*.
+Como nós vimos anteriormente, Promessas são muito úteis para programação assíncrona, e combinando elas com os geradores nós podemos ter uma poderosa ferramenta a nossa disposição para evitar problemas como o *inferno das callbacks*.
 
-As we are solely discussing ES6, I won't be talking about async functions as they were introduce in ES8 (ES2017) but know that the way they work is based on what you will see now.
+Como nós estamos discutindo apenas o ES6, eu não falarei sobre funções assíncronas como elas são apresentadas no ES8 (ES2017) mas saiba que o jeito que elas trabalham é baseado no que você verá agora. 
 
-You can read more about async functions in Chapter 19.
+Você pode ler mais sobre funções assíncronas no Capítulo 19.
 
-Using a Generator in combination with a Promise will allow us to write asynchronous code that feels like synchronous.
+Usar um Gerador em combinação com uma Promessa nos permitirá escrever um código assíncrono que se parece com síncrono.
 
-What we want to do is to wait for a promise to resolve and then pass the resolved value back into our generator in the `.next()` call.
+O que nós queremos fazer é esperar por uma promessa resolver e então passar o valor tratado de volta para o nosso gerador na chamada `.next()`.
 
 ``` js
-const myPromise = () => new Promise((resolve) => {
-  resolve("our value is...");
+const minhaPromessa = () => new Promise((resolve) => {
+  resolve("nosso valor é...");
 });
 
 function* gen() {
-  let result = "";
-  // returns promise
-  yield myPromise().then(data => { result = data }) ;
-  // wait for the promise and use its value
-  yield result + ' 2';
+  let resultado = "";
+  // retorna uma promessa
+  yield minhaPromessa().then(data => { resultado = data }) ;
+  // esperar a promessa e usar seu valor
+  yield resultado + ' 2';
 };
 
-// Call the async function and pass params.
-const asyncFunc = gen();
-asyncFunc.next();
-// call the promise and wait for it to resolve
+// Chamar a função assíncrona e passar os parâmetros.
+const funcaoAssincrona = gen();
+funcaoAssincrona.next();
+// chamar a promessa e esperar pela resposta
 // {value: Promise, done: false}
-asyncFunc.next();
-// Object { value: "our value is... 2", done: false }
+funcaoAssincrona.next();
+// Object { value: "nosso valor é... 2", done: false }
 ```
 
-The first time we call `.next()` it will call our promise and wait for it to resolve (in our simple example it resolves immediately) and when we call `.next()` again it will utilize the value returned by the promise to do something else (in this case just interpolate a string).
+A primeira vez que nós chamamos `.next()` ele vai chamar nossa promessa e vai esperar pela resposta (no nosso exemplo simples ele responde imediatamente) e quando nós chamamos `.next()` novamente ele vai utilizar o valor retornado pela promessa para alguma outr acoisa (nesse caso só interpola uma string).
