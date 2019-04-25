@@ -1,56 +1,56 @@
-# Chapter 16: Sets, WeakSets, Maps and WeakMaps
+# Chapter 16: Sets, WeakSets, Maps e WeakMaps
 
-## What is a `Set`?
+## O que é `Set`?
 
-A `Set` is an object where we can store **unique values** of any type.
+Um `Set` é um objeto onde nós podemos guardar **valores únicos** de qualquer tipo.
 
 ```js
-// create our set
-const family = new Set();
+// criando nosso set
+const familia = new Set();
 
-// add values to it
-family.add("Dad");
-console.log(family);
-// Set [ "Dad" ]
+// adicionando valores a ele
+familia.add("Pai");
+console.log(familia);
+// Set [ "Pai" ]
 
-family.add("Mom");
-console.log(family);
-// Set [ "Dad", "Mom" ]
+familia.add("Mãe");
+console.log(familia);
+// Set [ "Pai", "Mãe" ]
 
-family.add("Son");
-console.log(family);
-// Set [ "Dad", "Mom", "Son" ]
+familia.add("Filho");
+console.log(familia);
+// Set [ "Pai", "Mãe", "Filho" ]
 
-family.add("Dad");
-console.log(family);
-// Set [ "Dad", "Mom", "Son" ]
+familia.add("Dad");
+console.log(familia);
+// Set [ "Pai", "Mãe", "Filho" ]
 ```
 
-As you can see, at the end we tried to add "Dad" again,but the `Set` still remained the same because a `Set` can only take **unique values**.
+Como você pode ver, no final nós tentanmos adicionar "Pai" de novo, mas o `Set` não foi alterado porque um `Set` só pode ter **valores únicos**
 
-Let's continue using the same `Set` and see what method we can use on it.
+Vamos continuar usando o mesmo `Set` e ver qual método nós podemos usar nele.
 
 ``` js
-family.size;
+familia.size;
 // 3
-family.keys();
-// SetIterator {"Dad", "Mom", "Son"}
-family.entries();
-// SetIterator {"Dad", "Mom", "Son"}
-family.values();
-// SetIterator {"Dad", "Mom", "Son"}
-family.delete("Dad");
+familia.keys();
+// SetIterator {"Pai", "Mãe", "Filho"}
+familia.entries();
+// SetIterator {"Pai", "Mãe", "Filho"}
+familia.values();
+// SetIterator {"Pai", "Mãe", "Filho"}
+familia.delete("Pai");
 // true
-family;
-// Set [ "Mom", "Son" ]
-family.clear;
-family;
+familia;
+// Set [ "Mãe", "Filho" ]
+familia.clear;
+familia;
 // Set []
 ```
 
-As you can see a `Set` has a `size` property and we can `delete` an item from it or use `clear` to delete all the items from it.
+Como você pode ver um `Set` tem uma propriedade `size` e nós podemos excluir (`delete`) um item ou usar o `clear` para excluir todos os itens dele.
 
-We can also notice that a `Set` does not have keys so when we call `.keys()` we get the same as calling `.values()` or `.entries()`.
+Nós podemos notar que um `Set` não tem chaves, então quando nós chamamos `.keys()` nós obtemos o mesmo que de quando nós chamamos `.values()` ou `.entries()`.
 
 &nbsp;
 
