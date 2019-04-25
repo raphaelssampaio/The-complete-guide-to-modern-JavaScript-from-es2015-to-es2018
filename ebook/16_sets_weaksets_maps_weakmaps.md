@@ -1,4 +1,4 @@
-# Chapter 16: Sets, WeakSets, Maps e WeakMaps
+# Capítulo 16: Sets, WeakSets, Maps e WeakMaps
 
 ## O que é `Set`?
 
