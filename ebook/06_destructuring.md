@@ -1,4 +1,4 @@
-# Capítulo 6: Desestruturação
+# Capítulo 6: Desestruturaçã
 
 MDN define **desestruturação** dessa forma:
 
