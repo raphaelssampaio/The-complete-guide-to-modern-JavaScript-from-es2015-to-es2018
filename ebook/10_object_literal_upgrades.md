@@ -1,4 +1,4 @@
-# Capítulo 10: Upgrades no Objeto litera
+# Capítulo 10: Upgrades no Objeto literal
 
 Neste artigo nós veremos os vários upgrades trazidos pelo ES6 para a notação do Objeto literal.
 
