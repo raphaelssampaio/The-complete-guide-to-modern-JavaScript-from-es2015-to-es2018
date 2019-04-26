@@ -1,15 +1,15 @@
-# Chapter 17: Everything new in ES2016 (ES7)
+# Capítulo 17: Todas as notivades na ES2016 (ES7)
 
-ES2016 introduced only two new features :
+ES2016 apresentou somente duas novas funcionalidades :
 
 - `Array.prototype.includes()`
-- The exponential operator
+- O operador exponencial
 
 &nbsp;
 
 ## `Array.prototype.includes()`
 
-The `includes()` method will return `true` if our array includes a certain element, or `false` if it doesn't.
+O método `includes()` retornará `true` se nosso array incluir um certo elemento, ou `false` se ele não incluir.
 
 ```js
 let array = [1,2,4,5];
@@ -22,11 +22,11 @@ array.includes(3);
 
 &nbsp;
 
-### Combine `includes()` with `fromIndex`
+### Combinar `inclues()` com `fromIndex`
 
-We can provide `.includes()` with an index where to begin searching for an element. Default is 0, but we can also pass a negative value.
+Nós podemos fornecer `.includes()` com um index onde ele começa a procurar pelo elemento. O padrão é 0, mas nós podemos passar valores negativos também.
 
-The first value we pass in is the element to search and the second one is the index:
+O primeiro valor que nós passamos é o elemento para procurar e o segundo o segundo é o index:
 
 ``` js
 let array = [1,3,5,7,9,11];
@@ -41,17 +41,17 @@ array.includes(11,-3);
 // true
 ```
 
-`array.includes(5,4);` returned `false` because, despite the array actually contains the number 5, it is found at the index 2 but we started looking at position 4. That's why we couldn't find it and it returned `false`.
+`array.includes(5,4);` retornou `false` pois, apesar do array conter o número 5, ele foi encontrado no index 2 mas nós começamos a procurar na posição 4. Esse foi o motivo de nós não podermos encontrá-lo e o que foi retornado foi `false`.
 
-`array.includes(1,-1);` returned `false` because we started looking at the index -1 (which is the last element of the array) and then continued from that point onward.
+`array.includes(1,-1);` retornou `false` porque nós começamos a proculá-lo no index -1 (que é o último elemento do array) e então continuou daquele ponto em diante.
 
-`array.includes(11,-3);` returned `true` because we went back to the index -3 and moved up, finding the value 11 on our path.
+`array.includes(11,-3);` retornou `true` porque nós voltamos ao index -3 e subiu, encontrando o valor 11 no nosso caminho.
 
 &nbsp;
 
-## The exponential operator
+## O operador exponencial
 
-Prior to ES2016 we would have done this:
+Antes do ES2016 nós poderíamos fazer assim:
 
 ``` js
 Math.pow(2,2);
@@ -60,7 +60,7 @@ Math.pow(2,3);
 // 8
 ```
 
-Now with the new exponential operator we can do this:
+Agora com o novo operador exponencial nós podemos fazer assim:
 
 ```js
 2**2;
@@ -69,7 +69,7 @@ Now with the new exponential operator we can do this:
 // 8
 ```
 
-It will get pretty useful when combining multiple operations like in this example:
+Ele será muito útil quando combinado com operadores múltiplos como no exemplo abaixo:
 
 ``` js
 2**2**2;
@@ -78,4 +78,4 @@ Math.pow(Math.pow(2,2),2);
 // 16
 ```
 
-Using `Math.pow()` you need to continuously concatenate them and it can get pretty long and messy. The exponential operator provides a faster and cleaner way of doing the same thing.
+Usando `Math.pow()` você precisa continuamente concatená-los e eles vão ficando longos e bangunçados. O operador exponencial fornece uma rápida e limpa maneira de fazer a mesma coisa.
