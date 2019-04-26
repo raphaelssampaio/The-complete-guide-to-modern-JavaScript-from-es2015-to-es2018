@@ -1,4 +1,4 @@
-# Capítulo 12: Classe
+# Capítulo 12: Classes
 
 Citando o MDN:
 > classes são simplificações da linguagem para as heranças baseadas nos protótipos. A sintaxe para classes **não** introduz um novo modelo de herança de orientação a objetos em JavaScript.
