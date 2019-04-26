@@ -32,5 +32,3 @@ Se vocês curtirem meu conteúdo e você quiser doar um copo de café para mim, 
 ## Tradução para o Português
 
 **Tradução:** [Raphael Sampaio](https://www.linkedin.com/in/raphael-sampaio-41342757)
-
-**Revisão:** [Jorge Barata](https://www.linkedin.com/in/jorgebarata) e [Hugo Duarte](https://www.linkedin.com/in/hugo-duarte-3392bb153)
