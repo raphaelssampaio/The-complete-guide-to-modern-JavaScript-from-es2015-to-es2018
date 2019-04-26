@@ -45,5 +45,3 @@ Meu nome é Alberto, Eu sou da Itália e amo programar. Enquanto eu estava estud
 ## Tradução para o Português
 
 **Tradução:** [Raphael Sampaio](https://www.linkedin.com/in/raphael-sampaio-41342757)
-
-**Revisão:** [Jorge Barata](https://www.linkedin.com/in/jorgebarata) e [Hugo Duarte](https://www.linkedin.com/in/hugo-duarte-3392bb153)
