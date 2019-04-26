@@ -1,4 +1,4 @@
-# Capítulo 13: Promessas
+# Capítulo 13: Promessa
 
 ## O que é uma Promessa (Promise)?
 
