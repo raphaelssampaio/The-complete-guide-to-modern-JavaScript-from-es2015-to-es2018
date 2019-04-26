@@ -1,4 +1,4 @@
-# Capítulo 15: Proxie
+# Capítulo 15: Proxies
 
 ## O que é um Proxy?
 
