@@ -1,4 +1,4 @@
-# Capítulo 9: Operador spread e parâmetros res
+# Capítulo 9: Operador spread e parâmetros rest
 
 ## O operador spread
 
