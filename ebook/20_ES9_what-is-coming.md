@@ -1,89 +1,91 @@
-# Chapter 20: ES2018 what is coming?
+# Capítulo 20: ES2018 o que está vindo?
 
-ES 2018 has not been released yet but we can look at the proposals for features that have reached the stage 4 (the final stage) and that will be included in the new upcoming version of ECMAScript.
-You can find the list on [github](https://github.com/tc39/proposals/blob/master/finished-proposals.md).
+ES 2018 ainda não foi lançado mas nós podemos ver as propostas das funcionalidades que chegaram ao estágio 4 (o estágio final) e que serão incluídas na nova versão que está vindo no ECMAScript.
+Você pode encontrar a lista no [github](https://github.com/tc39/proposals/blob/master/finished-proposals.md).
 
 &nbsp;
 
-## Rest / Spread for Objects
+## Rest / Spread para Objects
  
-Now we can use the rest/spread syntax for objects, let's look at how:
+Agora nós podemos usar a sintaxe rest/spread para objetos, vamos ver como:
 
 ```js
-let myObj = { 
+let meuObj = { 
   a:1,
   b:3,
   c:5,
   d:8,
 }
 
-// we use the rest operator to grab everything else left in the object.
-let { a, b, ...z } = myObj;
+// nós usamos o operador rest para pegar tudo que sobrar do objeto.
+let { a, b, ...z } = meuObj;
 console.log(a);      // 1
 console.log(b);      // 3
 console.log(z);   // {c: 5, d: 8}
 
-// using the spread syntax we cloned our Object
-let clone = { ...myObj };
+// usando a sintaxe spread nós clonamos nosso Objeto
+let clone = { ...meuObj };
 console.log(clone);
 // {a: 1, b: 3, c: 5, d: 8}
 ```
 
 &nbsp;
 
-## Asynchronous Iteration
+## Iteração Assíncrona
 
-With Asynchronous Iteration we can iterate asynchronously over our data.
+Com Iteração Assíncrona nós podemos iterar assincronamente nossos dados.
+
+[Da documentação:](https://github.com/tc39/proposal-async-iteration)
 
 [From the documentation:](https://github.com/tc39/proposal-async-iteration)
-> An async iterator is much like an iterator, except that its `next()` method returns a promise for a `{ value, done }` pair.
+> Um iterador assíncrono é muito parecido com um iterador, exceto que seu método `next()` retorna uma promessa para um par `{ value, done }`.
 
-To do so, we will use a `for-await-of` loop.
+Para fazer isso, nós usaremos uma estrutura de repetição `for-await-of`.
 
 ``` js
-for await (const line of readLines(filePath)) {
-  console.log(line);
+for await (const linha of lerLinhas(caminhoDoArquivo)) {
+  console.log(linha);
 }
 ```
 
-> During execution, an async iterator is created from the data source using the `[Symbol.asyncIterator]()` method.
-Each time we access the next value in the sequence, we implicitly await the promise returned from the iterator method.
+> Durante a execução, um iterador assíncrono é criado a partir do dado fonte usando o método `[Symbol.asyncIterator]()`.
+Cada vez que acessarmos o próximo valor na sequência, nós implicitamente esperamos a promessa retornada do método iterador
 
 &nbsp;
 
 ## `Promise.prototype.finally()`
 
-After our promise has finished we can invoke a callback.
+Depois da nossa promessa ter terminado nós podemos chamar um callback.
 
 ``` js
-fetch("your-url")
-  .then(result => {
-    // do something with the result
+fetch("sua-url")
+  .then(resultado => {
+    // faça alguma coisa com o resultado
   })
   .catch(error => {
-    // do something with the error
+    // faça alguma coisa com o erro
   })
   .finally(()=> {
-    // do something once the promise is finished
+    // faça alguma coisa depois que a promessa for finalizada
   })
 ```
 
 &nbsp;
 
-## RegExp features
+## Funcionalidades RegExp
 
-4 new RegExp related features will make it to the new version of ECMAScript. They are:
+4 novos recursos relacionados ao RegExp chegarão à nova versão do ECMAScript. Eles são:
 
-- [`s (dotAll)` flag for regular expressions](https://github.com/tc39/proposal-regexp-dotall-flag)
-- [RegExp named capture groups](https://github.com/tc39/proposal-regexp-named-groups)
-- [RegExp Lookbehind Assertions](https://github.com/tc39/proposal-regexp-lookbehind)
-- [RegExp Unicode Property Escapes](https://github.com/tc39/proposal-regexp-lookbehind)
+- [`s (dotAll)` flag para expressão regular](https://github.com/tc39/proposal-regexp-dotall-flag)
+- [RegExp grupos de captura nomeados](https://github.com/tc39/proposal-regexp-named-groups)
+- [RegExp Asserções Lookbehind](https://github.com/tc39/proposal-regexp-lookbehind)
+- [RegExp Escapes da propriedade Unicode](https://github.com/tc39/proposal-regexp-lookbehind)
 
 &nbsp;
 
-### `s (dotAll)` flag for regular expression
+### `s (dotAll)` flag para expressão regular
 
-This introduces a new `s` flag for ECMAScript regular expressions that makes `.` match any character, including line terminators.
+Isso apresenta uma nova flag `s` para as expressões regulares do ECMAScript que fazem `.` corresponder a qualquer caractere, incluindo o terminador de linha.
 
 ``` js
 /foo.bar/s.test('foo\nbar');
@@ -94,9 +96,11 @@ This introduces a new `s` flag for ECMAScript regular expressions that makes `.`
 
 ### RegExp named capture groups
 
-[From the documentation:](https://github.com/tc39/proposal-regexp-named-groups)
+[Da documentação:](https://github.com/tc39/proposal-regexp-named-groups)
 
 >Numbered capture groups allow one to refer to certain portions of a string that a regular expression matches. Each capture group is assigned a unique number and can be referenced using that number, but this can make a regular expression hard to grasp and refactor.</br> </br> For example, given` /(\d{4})-(\d{2})-(\d{2})/` that matches a date, one cannot be sure which group corresponds to the month and which one is the day without examining the surrounding code. Also, if one wants to swap the order of the month and the day, the group references should also be updated.</br> </br> A capture group can be given a name using the `(?<name>...)` syntax, for any identifier `name`. The regular expression for a date then can be written as `/(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/u`. Each name should be unique and follow the grammar for ECMAScript IdentifierName.</br> </br> Named groups can be accessed from properties of a `groups` property of the regular expression result. Numbered references to the groups are also created, just as for non-named groups. For example:
+
+> 
 
 ``` js
 let re = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/u;
