@@ -1,4 +1,4 @@
-# Capítulo 7: Iterações e repetiçõe
+# Capítulo 7: Iterações e repetições
 
 ES6 apresentou um novo tipo de estrutura de repetição, o `for of`.
 
