@@ -1,4 +1,4 @@
-# Capítulo 3: Argumentos de função padrã
+# Capítulo 3: Argumentos de função padrão
 
 ## Argumentos de função padrão
 
