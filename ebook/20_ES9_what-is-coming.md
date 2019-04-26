@@ -100,22 +100,22 @@ Isso apresenta uma nova flag `s` para as expressões regulares do ECMAScript que
 
 >Numbered capture groups allow one to refer to certain portions of a string that a regular expression matches. Each capture group is assigned a unique number and can be referenced using that number, but this can make a regular expression hard to grasp and refactor.</br> </br> For example, given` /(\d{4})-(\d{2})-(\d{2})/` that matches a date, one cannot be sure which group corresponds to the month and which one is the day without examining the surrounding code. Also, if one wants to swap the order of the month and the day, the group references should also be updated.</br> </br> A capture group can be given a name using the `(?<name>...)` syntax, for any identifier `name`. The regular expression for a date then can be written as `/(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/u`. Each name should be unique and follow the grammar for ECMAScript IdentifierName.</br> </br> Named groups can be accessed from properties of a `groups` property of the regular expression result. Numbered references to the groups are also created, just as for non-named groups. For example:
 
-> 
+> Grupos de captura numerados permitem que uma se refira a determinadas partes de uma string que corresponde a uma expressão regular. Cada grupo de captura é atribuído a um número exclusivo e pode ser referenciado usando esse número, mas isso pode tornar uma expressão regular difícil de entender e refatorar.</br> </br> Por exemplo, dado ` /(\d{4})-(\d{2})-(\d{2})/` que compara uma data, não se pode ter certeza de qual grupo corresponde ao mês e qual é o dia sem examinar o código circundante. Além disso, se alguém quiser trocar a ordem do mês e do dia, as referências do grupo também devem ser atualizadas.</br> </br> Um grupo de captura pode receber um nome usando a sintaxe `(?<name>...)`, para qualquer identificador `name`. A expressão regular para uma data então pode ser escrita como `/(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/u`. Cada nome deve ser único e seguir a gramática para o ECMAScript IdentifierName.</br> </br> Grupos nomeados podem ser acessados a partir de propriedades de uma propriedade `groups` do resultado da expressão regular. Referências numeradas aos grupos também são criadas, assim como para grupos não nomeados. Por exemplo:
 
 ``` js
-let re = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/u;
-let result = re.exec('2015-01-02');
-// result.groups.year === '2015';
-// result.groups.month === '01';
-// result.groups.day === '02';
+let er = /(?<ano>\d{4})-(?<mes>\d{2})-(?<dia>\d{2})/u;
+let resultado = er.exec('2015-01-02');
+// resultado.groups.ano === '2015';
+// resultado.groups.mes === '01';
+// resultado.groups.dia === '02';
 
-// result[0] === '2015-01-02';
-// result[1] === '2015';
-// result[2] === '01';
-// result[3] === '02';
+// resultado[0] === '2015-01-02';
+// resultado[1] === '2015';
+// resultado[2] === '01';
+// resultado[3] === '02';
 
-let {groups: {one, two}} = /^(?<one>.*):(?<two>.*)$/u.exec('foo:bar');
-console.log(`one: ${one}, two: ${two}`);  // prints one: foo, two: bar
+let {groups: {um, dois}} = /^(?<um>.*):(?<dois>.*)$/u.exec('foo:bar');
+console.log(`um: ${um}, two: ${dois}`);  // prints um: foo, dois: bar
 ```
 &nbsp; 
 
