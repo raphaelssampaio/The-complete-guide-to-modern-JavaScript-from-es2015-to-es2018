@@ -5,7 +5,7 @@ Você pode encontrar a lista no [github](https://github.com/tc39/proposals/blob/
 
 &nbsp;
 
-## Rest / Spread para Objects
+## Rest / Spread para Objetos
  
 Agora nós podemos usar a sintaxe rest/spread para objetos, vamos ver como:
 
