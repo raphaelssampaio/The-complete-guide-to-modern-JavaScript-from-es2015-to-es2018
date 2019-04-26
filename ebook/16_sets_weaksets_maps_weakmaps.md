@@ -54,146 +54,146 @@ Nós podemos notar que um `Set` não tem chaves, então quando nós chamamos `.k
 
 &nbsp;
 
-### Loop over a `Set`
+### Estruturas de repetição sobre um `Set`
 
-We have two ways of iterating over a `Set`: using `.next()` or using a `for of` loop.
+Nós temos duas maneiras de iterar sobre um `Set`: usando `.next()` ou usando a estrutura `for of`.
 
 ``` js
-// using `.next()`
-const iterator = family.values();
-iterator.next();
-// Object { value: "Dad", done: false }
-iterator.next();
-// Object { value: "Mom", done: false }
+// usando `.next()`
+const iterador = familia.values();
+iterador.next();
+// Object { value: "Pai", done: false }
+iterador.next();
+// Object { value: "Mãe", done: false }
 
 
-// using a `for of` loop
-for(const person of family) {
-  console.log(person);
+// usando um `for of`
+for(const pessoa of familia) {
+  console.log(pessoa);
 }
-// Dad
-// Mom
-// Son
+// Pai
+// Mãe
+// Filho
 ```
 
 &nbsp;
 
-### Remove duplicates from an array
+### Remover duplicatas de um array
 
-We can use a `Set` to remove duplicates from an Array since we know it can only hold unique values.
+Nós podemos usar um `Set` para remover duplicatas de um Array já que sabemos que só pode conter valores únicos.
 
 ```js
-const myArray = ["dad", "mom", "son", "dad", "mom", "daughter"];
+const meuArray = ["pai", "mãe", "filho", "pai", "mãe", "filha"];
 
-const set = new Set(myArray);
+const set = new Set(meuArray);
 console.log(set);
-// Set [ "dad", "mom", "son", "daughter" ]
-// transform the `Set` into an Array
-const uniqueArray = Array.from(set);
-console.log(uniqueArray);
-// Array [ "dad", "mom", "son", "daughter" ]
+// Set [ "pai", "mãe", "filho", "filha" ]
+// transformando o `Set` em um Array
+const arrayUnico = Array.from(set);
+console.log(arrayUnico);
+// Array [ "pai", "mãe", "filho", "filha" ]
 
-// write the same but in a single line
-const uniqueArray = Array.from(new Set(myArray));
-// Array [ "dad", "mom", "son", "daughter" ]
+// escrevendo a mesma coisa mas em uma única linha
+const arrayUnico = Array.from(new Set(meuArray));
+// Array [ "pai", "mãe", "filho", "filha" ]
 ```
 
-As you can see the new array only contains the unique values from the original array.
+Como você pode ver o novo array só contém os valores únicos do array original.
 
 &nbsp;
 
-## What is a `WeakSet`?
+## O que é um `WeakSet`?
 
-A `WeakSet` is similar to a `Set` but it can **only** contain Objects.
+Um `WeakSet` é similar ao `Set`mas ele **só** pode conter Objetos.
 
 
 ``` js
-let dad = {name: "Daddy", age: 50};
-let mom = {name: "Mummy", age: 45};
+let pai = {nome: "Papai", idade: 50};
+let mae = {nome: "Mamãe", idade: 45};
 
-const family = new WeakSet([dad,mom]);
+const familia = new WeakSet([pai,mae]);
 
-for(const person of family){
-  console.log(person);
+for(const pessoa of familia){
+  console.log(pessoa);
 }
-// TypeError: family is not iterable
+// TypeError: familia is not iterable  (família não é iterável)
 ```
 
-We created our new `WeakSet` but when we tried to use a `for of` loop it did not work, we can't iterate over a `WeakSet`.
+Nós criamos um `WeakSet` mas quando nós tentamos usar uma estrutura `for of`, ela não funciona, nós não podemos iterar sobre um `WeakSet`.
 
-Another big difference that we can see is by trying to use `.clear` on a `WeakSet`: nothing will happen because a `WeakSet` cleans itself up after we delete an element from it.
+Uma outra grande diferença que nós podemos ver é quando tentamos usar `.clear` em um `WeakSet`: nada acontecerá porque um `WeakSet` limpa a si mesmo depois que nós excluimos um elemento dele.
 
 ```js
-dad = null;
-family;
+pai = null;
+familia;
 // WeakSet [ {…}, {…} ]
 
-// wait a few seconds
-family;
+// espere alguns segundos
+familia;
 // WeakSet [ {…} ]
 ```
 
-As you can see after a few seconds **dad** was removed and *garbage collected*. That happened because the reference to it was lost when we set the value to `null`.
-
+Como você pode ver depois de algus segundos **pai** foi removido e o *lixo foi coletado*. Isso acontece porque a referência dela foi perdida quando nós setamos o valor para `null`.
 
 &nbsp;
 
-## What is a `Map`?
+## O que é um `Map`?
 
-A `Map` is similar to a `Set`, but they have key and value pairs.
+Um `Map` é similar ao `Set`, mas eles têm chave e pares de valor.
 
 ```js
-const family = new Map();
+const familia = new Map();
 
-family.set("Dad", 40);
-family.set("Mom", 50);
-family.set("Son", 20);
+familia.set("Pai", 40);
+familia.set("Mãe", 50);
+familia.set("Filho", 20);
 
-family;
-// Map { Dad → 40, Mom → 50, Son → 20 }
-family.size;
+familia;
+// Map { Pai → 40, Mãe → 50, Filho → 20 }
+familia.size;
 // 3
 
-family.forEach((key,val) => console.log(val,key));
-// Dad 40
-// Mom 50
-// Son 20
+familia.forEach((key,val) => console.log(val,key));
+// Pai 40
+// Mãe 50
+// Filho 20
 
-for(const [key,val] of family){
+for(const [key,val] of familia){
   console.log(key,val);
 }
-// Dad 40
-// Mom 50
-// Son 20
+// Pai 40
+// Mãe 50
+// Filho 20
 ```
 
-If you remember, we could iterate over a `Set` only with a `for of` loop, while we can iterate over a `Map` with both a `for of` and a `forEach` loop.
+Se você lembrar, nós podemos iterar sobre um `Set` somente com uma estrutura `for of`, enquanto no `Map` nós podemos iterar usando ambas as estruturas `for of` e `forEach`.
 
 &nbsp;
 
-## What is a `WeakMap`?
+## O que é um `WeakMap`?
 
-A `WeakMap` is a collection of key/value pairs and similarly to a `WeakSet`, even in a `WeakMap` the keys are *weakly* referenced, which means that when the reference is lost, the value will be removed from the `WeakMap` and *garbage collected*.
+Um `WeakMap` é uma coleção de chave/pares de valor e é similar ao `WeakSet`, mesmo em um `WeakMap` as chaves são referenciadas *fragilmente*, que significa que quando a referencia é perdida, o valor será removido do `WeakMap`e o *lixo coletado*.
 
-A `WeakMap` is **not** enumerable therefore we cannot loop over it.
+
+Um `WeakMap` **não** é enumerável, portanto nós não conseguimos usar estruturas de repetição nele.
 
 ```js
-let dad = { name: "Daddy" };
-let mom = { name: "Mommy" };
+let pai = { nome: "Papai" };
+let mae = { nome: "Mamãe" };
 
-const myMap = new Map();
-const myWeakMap = new WeakMap();
+const meuMap = new Map();
+const meuWeakMap = new WeakMap();
 
-myMap.set(dad);
-myWeakMap.set(mom);
+meuMap.set(dad);
+meuWeakMap.set(mom);
 
-dad = null;
-mom = null;
+pai = null;
+mae = null;
 
-myMap;
+meuMap;
 // Map(1) {{…}}
-myWeakMap;
+meuWeakMap;
 // WeakMap {}
 ```
 
-As you can see *mom* was garbage collected after we set the its value to `null` whilst *dad* still remains inside our `Map`.
+Como você pode ver *mae* foi coletado depois de nós setarmos o seu valor para `null` enquanto *pai* ainda continuou dentro do nosso `Map`.
