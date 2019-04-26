@@ -1,4 +1,4 @@
-# Capítulo 14: Geradore
+# Capítulo 14: Geradores
 
 ## O que é um Gerador?
 
