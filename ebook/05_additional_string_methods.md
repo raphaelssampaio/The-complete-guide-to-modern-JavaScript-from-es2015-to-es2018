@@ -1,4 +1,4 @@
-# Capítulo 5: Outros métodos de strin
+# Capítulo 5: Outros métodos de string
 
 ## Outros métodos de string
 
