@@ -1,62 +1,62 @@
-# Chapter 18: ES2017 string padding, `Object.entries()`, `Object.values()` and more
+# Capítulo 18: ES2017 padding de string, `Object.entries()`, `Object.values()` e mais
 
-ES2017 introduced many new cool features, which we are going to see here. 
+ES2017 apresentou várias novas funcionalidades legals, que nós vamos ver aqui.
 
-## String padding(`padStart` and `padEnd`)
+## Padding de String(`padStart` e `padEnd`)
 
-We can now add some padding to our strings, either at the end (`padEnd`) or at the beginning (`padStart`) of them.
+Nós podemos adicionar padding para nossas strings, tanto no final (`padEnd`) quanto no começo delas (`padStart`).
 
 ```js
-"hello".padStart(6);
-// " hello"
-"hello".padEnd(6);
-// "hello "
+"olá".padStart(6);
+// " ola"
+"olá".padEnd(6);
+// "olá "
 ```
 
-We specified that we want 6 as our padding, but why in both cases we got only 1 space?
-It happens because `padStart` and `padEnd` will go and fill the **empty spaces**. In our example "hello" is 5 letters, and our padding is 6, which leaves only 1 empty space.
+Nós especificamos que queremos 4 de padding, mas por que em ambos os casos nós obtivemos apenas 1 espaço?
+Isso acontece porque `padStart` e `padEnd` vai preencher o **espaço vazio**. No nosso exemplo "olá" tem 3 letras, e nosso padding é de 4, o que deixa somente 1 espaço vazio.
 
 Look at this example:
 
 ```js
-"hi".padStart(10);
-// 10 - 2 = 8 empty spaces
-// "        hi"
-"welcome".padStart(10);
-// 10 - 6 = 4 empty spaces
-// "   welcome"
+"oi".padStart(10);
+// 10 - 2 = 8 espaços vazios
+// "        oi"
+"bem-vindo".padStart(16);
+// 16 - 9 = 7 espaço vazio
+// "       bem-vindo"
 ```
 
 &nbsp;
 
-### Right align with `padStart`
+### Alinhamento a direita com `padStart`
 
-We can use `padStart` if we want to right align something.
+Nós podemos usar `padStart` se nós queremos alinhar algo a direita.
 
 ```js
-const strings = ["short", "medium length", "very long string"];
+const strings = ["pequena", "tamanho médio", "string muito grande"];
 
-const longestString = strings.sort(str => str.length)
+const stringMaisLonga = strings.sort(str => str.length)
                               .map(str => str.length)[0];
 
-strings.forEach(str => console.log(str.padStart(longestString)));
+strings.forEach(str => console.log(str.padStart(stringMaisLonga)));
 
-// very long string
-//    medium length
-//            short
+// string muito grande
+//       tamanho médio
+//             pequena
 ```
 
-First we grabbed the longest of our strings and measured its length. We then applied a `padStart` to all the strings based on the length of the longest so that we now have all of them perfectly aligned to the right.
+Primeiro, nós pegamos a maior de nossas strings e mensuramos seu tamanho. Então nós aplicamos um `padStart` para todas as strings baseado no maior tamanho então nós agora temos todos perfeitamente alinhados a direita.
 
 &nbsp;
 
-### Add a custom value to the padding
+### Adicionar um valor personalizado para o padding 
 
-We are not bound to just add a white space as a padding, we can pass both strings and numbers.
+Nós não somos obrigados a adicionar um espaço em branco para o padding, nós podemos passar tanto string quanto números.
 
 ```js
-"hello".padEnd(13," Alberto");
-// "hello Alberto"
+"olá".padEnd(11," Alberto");
+// "olá Alberto"
 "1".padStart(3,0);
 // "001"
 "99".padStart(3,0);
@@ -65,42 +65,42 @@ We are not bound to just add a white space as a padding, we can pass both string
 
 &nbsp;
 
-## `Object.entries()` and `Object.values()`
+## `Object.entries()` e `Object.values()`
 
-Let's first create an Object.
+Vamos primeiro criar um Objeto.
 
 ```js
-const family = {
-  father: "Jonathan Kent",
-  mother: "Martha Kent",
-  son: "Clark Kent",
+const familia = {
+  pai: "Jonathan Kent",
+  mae: "Martha Kent",
+  filho: "Clark Kent",
 }
 ```
 
-In previous versions of JavaScript we would have accessed the values inside the object like this:
+Em versões anteriores de JavaScript nós teríamos que acessar os valores dentro do objeto assim:
 
 ```js
-Object.keys(family);
-// ["father", "mother", "son"]
-family.father;
+Object.keys(familia);
+// ["pai", "mae", "filho"]
+familia.pai;
 "Jonathan Kent"
 ```
 
-`Object.keys()` returned us only the keys of the object that we then had to use to access the values.
+`Object.keys()` nos retornou somente as chaves dos objetos que nós, então, usamos para acessar os valores.
 
-We now have two more ways of accessing our objects:
+Nós agora temos duas maneiras a mais de acessar nossos objetos:
 
 ```js
-Object.values(family);
+Object.values(familia);
 // ["Jonathan Kent", "Martha Kent", "Clark Kent"]
 
-Object.entries(family);
-// ["father", "Jonathan Kent"]
-// ["mother", "Martha Kent"]
-// ["son", "Clark Kent"]
+Object.entries(familia);
+// ["pai", "Jonathan Kent"]
+// ["mae", "Martha Kent"]
+// ["filho", "Clark Kent"]
 ```
 
-`Object.values()` returns an array of all the values whilst `Object.entries()` returns an array of arrays containing both keys and values.
+`Object.values()`retorna um array de todos os valores enquanto `Object.entries()` retorna um array de arrays contendo tanto chaves (keys) quando valores.
 
 &nbsp;
 
@@ -109,73 +109,82 @@ Object.entries(family);
 This method will return all the own property descriptors of an object.
 The attributes it can return are `value`, `writable`, `get`, `set`, `configurable` and `enumerable`.
 
+Esse método vai retornar todas os descritores de propriedade próprios de um objeto.
+
 ``` js
-const myObj = {
-  name: "Alberto",
-  age: 25,
-  greet() {
-    console.log("hello");
+const meuObj = {
+  nome: "Alberto",
+  idade: 25,
+  saude() {
+    console.log("olá");
   },
 }
-Object.getOwnPropertyDescriptors(myObj);
-// age:{value: 25, writable: true, enumerable: true, configurable: true}
+Object.getOwnPropertyDescriptors(meuObj);
+// idade:{value: 25, writable: true, enumerable: true, configurable: true}
 
-// greet:{value: ƒ, writable: true, enumerable: true, configurable: true}
+// saude:{value: ƒ, writable: true, enumerable: true, configurable: true}
 
-// name:{value: "Alberto", writable: true, enumerable: true, configurable: true}
+// nome:{value: "Alberto", writable: true, enumerable: true, configurable: true}
 ```
 
 &nbsp;
 
-## Trailing commas in function parameter lists and calls
+## Vírculas à direita em lista de parâmetros de funções e em chamadas
 
-This is just a minor change to a syntax. Now, when writing objects we need to leave a trailing comma after each parameter, whether or not it is the last one.
+Isso é apenas uma mudança menor na sintaxe. Agora, quando escrevemos objetos nós precisamos deixar uma vírgula a direita depois de cada parâmetro, se for o último parâmetro ou não.
 
 ``` js
-// from this
-const object = {
+// era assim
+const objeto = {
   prop1: "prop",
   prop2: "propop"
 }
 
-// to this
-const object = {
+// agora é assim
+const objeto = {
   prop1: "prop",
   prop2: "propop",
 }
 ```
 
-Notice how I wrote a comma at the end of the second property.
-It will not throw any error if you don't put it, but it's a better practice to follow as it will make the life easier to your colleague or team members.
+Note como eu escrevo uma vírgula no final da segunda propriedade.
+Não irá disparar nenhum erro se você não colocar, mas é uma melhor prática para seguir pois facilitará a vida dos seus colegas ou membros da equipe.
+
 
 ```js
-// I write
+// Eu escrevo
 const object = {
   prop1: "prop",
   prop2: "propop"
 }
 
-// my colleague updates the code, adding a new property
+
+// meus colegas atualizam o código, adicionando uma nova propriedade
 const object = {
   prop1: "prop",
   prop2: "propop"
   prop3: "propopop"
 }
-// suddenly, he gets an error because he did not notice that I forgot to leave a comma at the end of the last parameter.
+// de repente, ele recebe um erro porque ele não notou que eu esqueci de colocar uma vírgula no final do último parâmetro
 ```
 
 
 &nbsp;
 
-## Shared memory and `Atomics`
+## Memória compartilhada e `Atomics`
 
-From [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics):
+[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics):
 
-> When memory is shared, multiple threads can read and write the same data in memory. Atomic operations make sure that predictable values are written and read, that operations are finished before the next operation starts and that operations are not interrupted.
+> Quando a memória é compartilhada, multiplas threads podem ser lidas e escritas no mesmo dado da memória. Operações atômicas garantem que os valores previstos sejam lidos e escritos, estas operações são finalizadas antes da próxima operação iniciar e que as mesmas não sejam interrompidas.
 
 `Atomics` is not a constructor, all of its properties and methods are static (just like `Math`) therefore we cannot use it with a new operator or invoke the `Atomics` object as a function.
 
+`Atomics` não é um construtor, todas as suas propriedades e métodos são estáticos (do mesmo jeito de `Math`) portanto, nós não podemos usá-lo como um novo operador ou chamar o objeto `Atomics` como uma função.
+
+
 Examples of its methods are:
+
+Alguns exemplos dos seus métodos são:
 
 - add / sub
 - and / or / xor
