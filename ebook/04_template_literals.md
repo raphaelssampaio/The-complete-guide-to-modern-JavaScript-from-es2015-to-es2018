@@ -1,4 +1,4 @@
-# Capítulo 4: Template literal
+# Capítulo 4: Template literais
 
 Antes do ES6 eles eram chamados de *template strings*, agora nós os chamamos de *template literal*. Vamos ter que ver o que mudou na maneira de interpolar strings no ES6.
 
