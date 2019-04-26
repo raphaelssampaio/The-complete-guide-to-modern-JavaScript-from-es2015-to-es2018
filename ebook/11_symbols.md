@@ -1,4 +1,4 @@
-# Capítulo 11: Symbol
+# Capítulo 11: Symbols
 
 ES6 adicionou um novo tipo primitivo chamado **Symbols**. O que eles são? E o que eles fazem?
 
